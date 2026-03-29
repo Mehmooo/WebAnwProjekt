@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const path = require("path");
+const { open } = require("sqlite");
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,13 @@ db.run(`
     password TEXT
   )
 `);
+
+async function initDB() {
+  return open({
+    filename: dbPath,
+    driver: sqlite3.Database,
+  });
+}
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -79,7 +87,9 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Backend running on port 3000/health");
+  console.log("Backend running on port 3000");
+  console.log("Health check available on 3000/health");
+  console.log("DB check available on 3000/db");
 });
 
 app.get("/health", (req, res) => {
@@ -94,5 +104,15 @@ app.get("/health", (req, res) => {
       status: "error",
       message: err.message,
     });
+  }
+});
+
+app.get("/db", async (req, res) => {
+  try {
+    const db = await initDB();
+    const rows = await db.all("SELECT * FROM users");
+    res.json({ status: "ok", data: rows });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
   }
 });
