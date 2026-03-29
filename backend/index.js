@@ -30,7 +30,9 @@ app.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).json({ message: "Username and password are required" });
+    return res
+      .status(400)
+      .json({ message: "Username and password are required" });
   }
 
   const hashed = await bcrypt.hash(password, 10);
@@ -46,7 +48,7 @@ app.post("/register", async (req, res) => {
         return res.status(500).json({ message: "DB error" });
       }
       res.json({ message: "User registered successfully 🎉" });
-    }
+    },
   );
 });
 
@@ -72,10 +74,25 @@ app.post("/login", (req, res) => {
       } else {
         res.status(401).json({ message: "Wrong password ❌" });
       }
-    }
+    },
   );
 });
 
 app.listen(3000, () => {
-  console.log("Backend running on port 3000");
+  console.log("Backend running on port 3000/health");
+});
+
+app.get("/health", (req, res) => {
+  try {
+    res.status(200).json({
+      status: "ok",
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: err.message,
+    });
+  }
 });
