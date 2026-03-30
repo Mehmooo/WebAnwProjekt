@@ -1,3 +1,17 @@
+/*
+Author: Fabian Mattes
+Date: 23.03.2026
+
+Backend for the login and register system.
+
+main functions:
+- /register: for registering a new user.
+- /login: for logging in an existing user.
+- /health: for checking the health of the backend.
+- /db: for checking the database connection and retrieving all users.
+
+*/
+
 const fs = require("fs");
 const express = require("express");
 const bcrypt = require("bcrypt");
@@ -10,7 +24,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// SQLite DB (Datei im Container)
+// ensure the data directory exists and initialize the database
 const dbDir = path.join(__dirname, "data");
 if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
@@ -18,7 +32,7 @@ if (!fs.existsSync(dbDir)) {
 const dbPath = path.join(dbDir, "database.db");
 const db = new sqlite3.Database(dbPath);
 
-// Tabelle anlegen (falls nicht existiert)
+// create users table if it doesn't exist
 db.run(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,6 +41,7 @@ db.run(`
   )
 `);
 
+// helper function to initialize the database connection
 async function initDB() {
   return open({
     filename: dbPath,
@@ -36,6 +51,15 @@ async function initDB() {
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
+  // this function is for registrating a new user.
+  // Parameters:
+  //  req: the request object, containing the username and password in the body.
+  //
+  // Response:
+  //  res: the response object, used to send back the result of the registration.
+  //
+  // Authors: Fabian Mattes
+  // Date: 23.03.2026
 
   if (!username || !password) {
     return res
@@ -60,8 +84,17 @@ app.post("/register", async (req, res) => {
   );
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  // this function is for logging in an existing user.
+  // Parameters:
+  //  req: the request object, containing the username and password in the body.
+  //
+  // Response:
+  //  res: the response object, used to send back the result of the login.
+  //
+  // Authors: Fabian Mattes
+  // Date: 23.03.2026
 
   db.get(
     "SELECT password FROM users WHERE username = ?",
@@ -71,28 +104,36 @@ app.post("/login", (req, res) => {
         return res.status(500).json({ message: "DB error" });
       }
 
-      if (!row) {
-        return res.status(401).json({ message: "User not found ❌" });
-      }
-
-      const valid = await bcrypt.compare(password, row.password);
-
-      if (valid) {
-        res.json({ message: "Login successful 🎉" });
+      if (!row || !(await bcrypt.compare(password, row.password))) {
+        return res
+          .status(401)
+          .json({ message: "Invalid username or password ❌" });
       } else {
-        res.status(401).json({ message: "Wrong password ❌" });
+        return res.json({ message: "Login successful 🎉" });
       }
     },
   );
 });
 
 app.listen(3000, () => {
+  // dumb, because everyone can see the logs in the console.
+  //just using for information purposes.
   console.log("Backend running on port 3000");
   console.log("Health check available on 3000/health");
   console.log("DB check available on 3000/db");
 });
 
 app.get("/health", (req, res) => {
+  // this function is for checking the health of the backend.
+  // Parameters:
+  //  req: the request object, not used in this function.
+  //
+  // Response:
+  //  res: the response object, used to send back the health status of the backend.
+  //
+  // Authors: Fabian Mattes
+  // Date: 23.03.2026
+
   try {
     res.status(200).json({
       status: "ok",
@@ -108,6 +149,15 @@ app.get("/health", (req, res) => {
 });
 
 app.get("/db", async (req, res) => {
+  // this function is for checking the database connection and retrieving all users.
+  // Parameters:
+  //  req: the request object, not used in this function.
+  //
+  // Response:
+  //  res: the response object, used to send back the status of the database connection and the list of users.
+  //
+  // Authors: Fabian Mattes
+  // Date: 23.03.2026
   try {
     const db = await initDB();
     const rows = await db.all("SELECT * FROM users");
