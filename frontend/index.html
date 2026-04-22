@@ -1,15 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Startseite</title>
-
-    <script>
-      // Weiterleitung zur Login-Seite
-      window.location.href = "login.html";
-    </script>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <p>Du wirst zur Login-Seite weitergeleitet...</p>
+  <body class="dashboard-page">
+    <div class="page-container">
+      <p class="nav-label">Nav Leiste</p>
+
+      <header class="top-bar">
+        <div class="logo-box">
+          <span>Logo</span>
+        </div>
+
+        <nav class="top-nav">
+          <a href="login.html">Mein Account</a>
+          <a href="login.html">Anmelden</a>
+          <a href="register.html">Registrieren</a>
+          <a href="cart.html" class="cart-link">🛒</a>
+        </nav>
+      </header>
+
+      <main class="main-box">
+        <section class="inner-box about-section">
+          <h1>Über Uns</h1>
+        </section>
+
+        <section class="inner-box info-section">
+          <h2>Infos vom Shop</h2>
+          <a href="index.html" class="shop-button">Zum Shop</a>
+        </section>
+      </main>
+
+      <footer class="bottom-footer">
+        <a href="login.html">Impressum</a>
+        <a href="login.html">AGB</a>
+        <a href="login.html">Datenschutzerklärung</a>
+      </footer>
+    </div>
   </body>
 </html>
