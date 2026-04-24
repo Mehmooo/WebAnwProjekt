@@ -335,6 +335,51 @@ body.dashboard-page {
   background: #764ba2;
 }
 
+/* ===== STYLE FÜR Produktübersicht */
+.products_overview_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.products_overview_grid > a {
+  color: black;
+}
+
+.product-card {
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+.products_square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding-left: 10px;
+  height: 150px;
+  
+}
+
+.products_square > img {
+  height: 100px;
+  border: 1px solid black;
+  
+}
+
+.products_square > p {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+
 /* ===== STYLE FÜR FOOTER ===== */
 
 .bottom-footer {
