@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkt Detail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="product_detail_view">
+    <div class="page-container">
+        <header class="top-bar">
+            <div class="logo-box">
+                <span>Logo</span>
+            </div>
+
+            <nav class="top-nav">
+                <a href="login.html">Mein Account</a>
+                <a href="login.html">Anmelden</a>
+                <a href="cart.html" class="cart-link">🛒</a>
+            </nav>
+        </header>
+
+        <main class="main-box">
+            <div class="product_detail_grid">
+                <div class="picture_area_grid">
+                    <img src="sample-product.png">
+                </div>
+                <div class="product_text_area_grid">
+                    <div class="product_detail_title">
+                        <h1>Produkt 1</h1>
+                    </div>
+                    <div class="product_detail_information">
+                        <p>9,99 €</p>
+                        <div class="product_detail_button_group">
+                            <button id="variant1">Schwarz</button>
+                            <button id="variant2">Gelb</button>
+                            <button id="variant3">Orange</button>
+                            <button id="variant4">Blau</button>
+                        </div>
+                        <div class="product_detail_amount_input">
+                            <p><strong>Anzahl:</strong></p>
+                            <button class="decrement_button">-</button>
+                            <input>
+                            <button class="increment_button">+</button>
+                        </div>
+                        <div class="product_detail_add_cart">
+                            <a href="cart.html">
+                                <button id="add-cart">In den Warenkorb legen</button>
+                            </a>
+                        </div>
+                        <div class="product_detail_short_descr">
+                            <p><strong>Beschreibung:</strong><br>Text hier rein</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="bottom-footer">
+            <a href="">Impressum</a>
+            <a href="">AGB</a>
+            <a href="">Datenschutzerklärung</a>
+        </footer>
+    </div>
+    
+</body>
+</html>
