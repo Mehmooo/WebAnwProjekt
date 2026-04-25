@@ -281,17 +281,16 @@ body.dashboard-page {
   border-radius: 8px;
 }
 
-.cart-image {
+.cart-image > img {
   width: 75px;
   height: 55px;
   border: 1px solid #ccc;
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   background: white;
   border-radius: 4px;
 }
+
 
 .cart-info {
   flex: 1;
