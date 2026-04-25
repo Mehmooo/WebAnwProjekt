@@ -368,6 +368,7 @@ body.dashboard-page {
 }
 
 .products_square > img {
+  width: 120px;
   height: 100px;
   border: 1px solid black;
   
@@ -377,12 +378,14 @@ body.dashboard-page {
   position: absolute;
   right: 0;
   margin-right: 10px;
+  width: 100px;
 }
 
 /* ===== Style für Produktdetailansicht ===== */
 .product_detail_grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   gap: 10px;
   
 }
