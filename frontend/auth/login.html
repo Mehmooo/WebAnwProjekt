@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="login.js" defer></script>
+    <link rel="icon" type="image/png" href="../4Dudes.png" />
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <form onsubmit="login(event)" class="form">
+        <h2>Login</h2>
+        <div class="input-group">
+          <input
+            type="text"
+            name="loginUsername"
+            id="login-username"
+            required
+          />
+          <label for="loginUser">User Name</label>
+        </div>
+        <div class="input-group">
+          <input
+            type="password"
+            name="loginPassword"
+            id="login-password"
+            required
+          />
+          <label for="loginPassword">Password</label>
+        </div>
+        <input type="submit" value="Login" class="submit-btn" />
+        <a href="register.html">
+          <input type="button" value="Register" class="submit-btn" />
+        </a>
+        <p id="result"></p>
+      </form>
+    </div>
+  </body>
+</html>

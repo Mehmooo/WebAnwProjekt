@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="register.js" defer></script>
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <form onsubmit="register(event)" class="form">
+        <h2>Register</h2>
+        <div class="input-group">
+          <input type="text" name="registerUser" id="reg-username" required />
+          <label for="registerUser">User Name</label>
+        </div>
+        <div class="input-group">
+          <input
+            type="password"
+            name="registerPassword"
+            id="reg-password"
+            required
+          />
+          <label for="registerPassword">Password</label>
+        </div>
+        <input type="submit" value="Register" class="submit-btn" />
+        <a href="login.html">
+          <input type="button" value="Back to Login" class="submit-btn" />
+        </a>
+        <p id="result"></p>
+      </form>
+    </div>
+  </body>
+</html>
