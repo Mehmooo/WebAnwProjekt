@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!doctype html>
+
+    <html lang="de">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+
+        ```
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          /* ===== THEME VARIABLEN ===== */
+          :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --form-bg: rgba(0, 0, 0, 0.7);
+            --header-bg: rgba(0, 0, 0, 0.6);
+            --accent: #ff652f;
+          }
+
+          body.dark {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --form-bg: rgba(0, 0, 0, 0.85);
+            --header-bg: rgba(0, 0, 0, 0.8);
+          }
+
+          body {
+            background: url("werbung.jpg") no-repeat center;
+            background-size: cover;
+            font-family: sans-serif;
+            color: var(--text-color);
+          }
+
+          /* ===== HEADER ===== */
+          .header {
+            width: 100%;
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            z-index: 1000;
+          }
+
+          .header h1 {
+            color: var(--accent);
+          }
+
+          .nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+          }
+
+          .nav a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+          }
+
+          .nav a:hover {
+            color: var(--accent);
+          }
+
+          /* ===== TOGGLE SWITCH ===== */
+          .switch {
+            position: relative;
+            width: 50px;
+            height: 25px;
+          }
+
+          .switch input {
+            display: none;
+          }
+
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            background: #ccc;
+            border-radius: 25px;
+            width: 100%;
+            height: 100%;
+            transition: 0.3s;
+          }
+
+          .slider::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 2.5px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+          }
+
+          input:checked + .slider {
+            background: var(--accent);
+          }
+
+          input:checked + .slider::before {
+            transform: translateX(25px);
+          }
+
+          /* ===== LOGIN ===== */
+          .login-wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px;
+          }
+
+          .form {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            padding: 80px 40px 40px;
+            background: var(--form-bg);
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+          }
+
+          .form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            transform: skewX(-26deg);
+            border-radius: 10px;
+          }
+
+          .form h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent);
+          }
+
+          .input-group {
+            position: relative;
+          }
+
+          .input-group input {
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+            outline: none;
+          }
+
+          .input-group label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            transition: 0.3s;
+          }
+
+          .input-group input:focus + label,
+          .input-group input:valid + label {
+            transform: translateY(-18px);
+            font-size: 0.8rem;
+            color: var(--accent);
+          }
+
+          .submit-btn {
+            display: block;
+            margin-left: auto;
+            border: none;
+            background: var(--accent);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            color: white;
+            transition: 0.3s;
+          }
+
+          .submit-btn:hover {
+            background: #ff4500;
+          }
+
+          .form a {
+            text-decoration: none;
+          }
+
+          #result {
+            text-align: center;
+            margin-top: 10px;
+          }
+        </style>
+        ```
+      </head>
+
+      <body>
+        <!-- HEADER -->
+        <header class="header">
+          <h1>Meine Seite</h1>
+
+          ```
+          <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Kontakt</a>
+
+            <!-- Toggle -->
+            <label class="switch">
+              <input type="checkbox" id="theme-toggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </header>
+
+        <!-- LOGIN -->
+        <div class="login-wrapper">
+          <form class="form" onsubmit="login(event)">
+            <h2>Login</h2>
+
+            <div class="input-group">
+              <input type="text" required />
+              <label>User Name</label>
+            </div>
+
+            <div class="input-group">
+              <input type="password" required />
+              <label>Password</label>
+            </div>
+
+            <input type="submit" value="Login" class="submit-btn" />
+
+            <a href="register.html">
+              <input type="button" value="Register" class="submit-btn" />
+            </a>
+
+            <p id="result"></p>
+          </form>
+        </div>
+
+        <!-- SCRIPT -->
+        <script>
+          const toggle = document.getElementById("theme-toggle");
+
+          // gespeicherten Modus laden
+          if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            toggle.checked = true;
+          }
+
+          toggle.addEventListener("change", () => {
+            if (toggle.checked) {
+              document.body.classList.add("dark");
+              localStorage.setItem("theme", "dark");
+            } else {
+              document.body.classList.remove("dark");
+              localStorage.setItem("theme", "light");
+            }
+          });
+
+          function login(e) {
+            e.preventDefault();
+            document.getElementById("result").innerText =
+              "Login wird verarbeitet...";
+          }
+        </script>
+        ```
+      </body>
+    </html>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Meine Seite</h1>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">Über uns</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </header>
+
+    <!-- LOGIN -->
+    <div class="login-wrapper">
+      <form onsubmit="login(event)" class="form">
+        <h2>Login</h2>
+
+        <div class="input-group">
+          <input type="text" id="login-username" required />
+          <label>User Name</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="login-password" required />
+          <label>Password</label>
+        </div>
+
+        <input type="submit" value="Login" class="submit-btn" />
+
+        <a href="register.html">
+          <input type="button" value="Register" class="submit-btn" />
+        </a>
+
+        <p id="result"></p>
+      </form>
+    </div>
+  </body>
+</html>
