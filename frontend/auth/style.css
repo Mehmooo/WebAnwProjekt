@@ -4,9 +4,19 @@
   box-sizing: border-box;
 }
 body {
-  background: url("werbung.jpg") no-repeat center;
-  background-size: cover;
-  font-family: sans-serif;
+  /*background: url("werbung.jpg") no-repeat center;
+  background-size: cover;*/
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.items2-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10%;
+}
+.items2 {
+  flex: 0 0 auto;
+  width: 45%;
 }
 .login-wrapper {
   height: 100vh;
@@ -15,7 +25,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.form {
+.login-form {
   position: relative;
   width: 100%;
   max-width: 380px;
@@ -24,8 +34,10 @@ body {
   border-radius: 10px;
   color: #fff;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
 }
-.form::before {
+.login-form::before {
   content: "";
   position: absolute;
   top: 0;
@@ -38,16 +50,16 @@ body {
   border-radius: 10px;
   pointer-events: none;
 }
-.form h2 {
+.login-form h2 {
   text-align: center;
   letter-spacing: 1px;
   margin-bottom: 2rem;
-  color: #ff652f;
+  color: rgba(20, 100, 220, 0.8);
 }
-.form .input-group {
+.login-form .input-group {
   position: relative;
 }
-.form .input-group input {
+.login-form .input-group input {
   width: 100%;
   padding: 10px 0;
   font-size: 1rem;
@@ -59,7 +71,7 @@ body {
   background-color: transparent;
   color: inherit;
 }
-.form .input-group label {
+.login-form .input-group label {
   position: absolute;
   top: 0;
   left: 0;
@@ -68,10 +80,78 @@ body {
   pointer-events: none;
   transition: 0.3s ease-out;
 }
-.form .input-group input:focus + label,
-.form .input-group input:valid + label {
+.login-form .input-group input:focus + label,
+.login-form .input-group input:valid + label {
   transform: translateY(-18px);
-  color: #ff652f;
+  color: rgba(20, 100, 220, 0.8);
+  font-size: 0.8rem;
+}
+.register-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-form {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 40px 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.register-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  transform: skewX(-26deg);
+  transform-origin: bottom left;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.register-form h2 {
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  color: rgba(20, 100, 220, 0.8);
+}
+.register-form .input-group {
+  position: relative;
+}
+.register-form .input-group input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+}
+.register-form .input-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.3s ease-out;
+}
+.register-form .input-group input:focus + label,
+.register-form .input-group input:valid + label {
+  transform: translateY(-18px);
+  color: rgba(20, 100, 220, 0.8);
   font-size: 0.8rem;
 }
 .submit-btn {
@@ -79,7 +159,7 @@ body {
   margin-left: auto;
   border: none;
   outline: none;
-  background: #ff652f;
+  background: rgba(20, 100, 220, 0.8);
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;

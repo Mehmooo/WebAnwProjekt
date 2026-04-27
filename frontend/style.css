@@ -136,6 +136,7 @@ body.dashboard-page {
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
+  width: 100%;
 }
 
 .checkout-button:hover {
@@ -291,6 +292,7 @@ body.dashboard-page {
   height: 400px;
   width: 100%;
   border: 1px solid black;
+  border-radius: 8px;
 }
 
 .product_text_area_grid {
