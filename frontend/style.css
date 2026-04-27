@@ -136,6 +136,7 @@ body.dashboard-page {
   cursor: pointer;
   border-radius: 4px;
   font-weight: bold;
+  width: 100%;
 }
 
 .checkout-button:hover {
