@@ -30,47 +30,6 @@ body.dashboard-page {
   color: #444;
 }
 
-/* ===== HEADER / NAVIGATION ===== */
-
-.top-bar {
-  background: white;
-  min-height: 88px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 22px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.logo-box {
-  font-size: 22px;
-  color: #111;
-  font-weight: bold;
-}
-
-.top-nav {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.top-nav a {
-  text-decoration: none;
-  color: #222;
-  font-size: 18px;
-}
-
-.top-nav a:hover {
-  color: #667eea;
-}
-
-.cart-link {
-  font-size: 30px;
-  line-height: 1;
-}
-
 /* ===== MAIN BOX ===== */
 
 .main-box {
@@ -83,10 +42,10 @@ body.dashboard-page {
 }
 
 .inner-box {
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(20, 100, 220, 0.6);
 }
 
 /* ===== STYLE FÜR STARTSEITE ===== */
@@ -301,12 +260,14 @@ body.dashboard-page {
   border: 1px solid black;
   padding-left: 10px;
   height: 150px;
+  border-radius: 8px;
 }
 
 .products_square > img {
   width: 120px;
   height: 100px;
   border: 1px solid black;
+  border-radius: 4px;
 }
 
 .products_square > p {
@@ -366,7 +327,7 @@ body.dashboard-page {
 }
 
 .product_detail_amount_input {
-  width: 100px;
+  width: 200px;
 }
 
 .product_detail_amount_input > p {
@@ -403,13 +364,6 @@ body.dashboard-page {
   margin: 0;
 }
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
 /* ===== STYLE FÜR ACCOUNT ===== */
 
 .account-btn {
@@ -435,7 +389,6 @@ body.dashboard-page {
   color: #6d3fb5;
 }
 
->>>>>>> origin/main
 /* ===== STYLE FÜR FOOTER ===== */
 
 .bottom-footer {

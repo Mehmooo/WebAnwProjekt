@@ -5,22 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mein Account</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="4Dudes-Photoroom.png" type="image/x-icon" />
+    <link rel="stylesheet" href="headerfooter.css" />
   </head>
   <body class="dashboard-page">
-    <div class="page-container">
-      <p class="nav-label">Nav Leiste</p>
-
-      <header class="top-bar">
-        <div class="logo-box">Logo</div>
-
-        <nav class="top-nav">
-          <a href="account.html">Mein Account</a>
-          <a href="login.html">Anmelden</a>
-          <a href="cart.html" class="cart-link">🛒</a>
-        </nav>
-      </header>
-
-      <main class="main-box">
+    <header class="header">
+      <div class="Logo">
+        <a href="index.html">
+          <img src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+          <h1>4Dudes</h1>
+        </a>
+      </div>
+      <div class="nav">
+        <a href="auth/login.html">
+          <input type="button" value="Login" class="but" />
+        </a>
+        <a href="account.html">
+          <input type="button" value="ACCOUNT" class="but" />
+        </a>
+        <a href="cart.html">
+          <input type="button" value="EINKAUFSWAGEN" class="but" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="page-container main-box">
         <h2>Mein Account</h2>
 
         <div class="account-profile-section">
@@ -31,13 +40,22 @@
         <p>Name: Max Mustermann</p>
         <p>E-Mail: max.mustermann@gmail.com</p>
         <p>Mitglied seit: April 2026</p>
-      </main>
-
-      <footer class="bottom-footer">
-        <a href="impressum.html">Impressum</a>
-        <a href="agb.html">AGB</a>
-        <a href="datenschutz.html">Datenschutzerklärung</a>
+      </div>
+      <footer class="footer">
+        <div class="items3">
+          <img class="left" src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+        </div>
+        <div class="items3">
+          <p class="center">
+            <a href="imprint.html"> Impressum </a>
+            <a href="agb.html"> AGB's </a>
+            <a href="datenschutz.html"> Datenschutz </a>
+          </p>
+        </div>
+        <div class="items3">
+          <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
+        </div>
       </footer>
-    </div>
+    </main>
   </body>
 </html>
