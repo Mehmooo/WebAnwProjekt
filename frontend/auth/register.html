@@ -6,30 +6,110 @@
     <title>Register</title>
     <link rel="stylesheet" href="style.css" />
     <script src="register.js" defer></script>
+    <link rel="stylesheet" href="/frontend/style.css" />
+    <link rel="stylesheet" href="/frontend/headerfooter.css" />
   </head>
   <body>
-    <div class="login-wrapper">
-      <form onsubmit="register(event)" class="form">
+    <header class="header">
+      <div class="Logo">
+        <a href="/frontend/index.html">
+          <img src="/frontend/4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+          <h1>4Dudes</h1>
+        </a>
+      </div>
+      <div class="nav">
+        <a href="/frontend/auth/login.html">
+          <input type="button" value="Login" class="but" />
+        </a>
+        <a href="/frontend/account.html">
+          <input type="button" value="ACCOUNT" class="but" />
+        </a>
+        <a href="/frontend/cart.html">
+          <input type="button" value="EINKAUFSWAGEN" class="but" />
+        </a>
+      </div>
+    </header>
+
+    <div class="register-wrapper">
+      <form onsubmit="register(event)" class="register-form">
         <h2>Register</h2>
-        <div class="input-group">
-          <input type="text" name="registerUser" id="reg-username" required />
-          <label for="registerUser">User Name</label>
+        <div class="items2-wrapper">
+          <div class="input-group items2">
+            <input
+              type="email"
+              name="registerUser"
+              id="reg-username"
+              required
+            />
+            <label for="registerUser">Email</label>
+          </div>
+          <div class="input-group items2">
+            <input
+              type="password"
+              name="registerPassword"
+              id="reg-password"
+              required
+            />
+            <label for="registerPassword">Password</label>
+          </div>
         </div>
-        <div class="input-group">
-          <input
-            type="password"
-            name="registerPassword"
-            id="reg-password"
-            required
-          />
-          <label for="registerPassword">Password</label>
+        <div class="items2-wrapper">
+          <div class="input-group items2">
+            <input type="text" name="Vorname" id="reg-vorname" required />
+            <label for="Vorname">First Name</label>
+          </div>
+          <div class="input-group items2">
+            <input type="text" name="Nachname" id="reg-nachname" required />
+            <label for="Nachname">Last Name</label>
+          </div>
+        </div>
+        <div class="items2-wrapper">
+          <div class="input-group items2">
+            <input type="text" name="City" id="reg-city" required />
+            <label for="City">City</label>
+          </div>
+          <div class="input-group items2">
+            <input type="text" name="Postcode" id="reg-postcode" required />
+            <label for="Postcode">Postcode</label>
+          </div>
+        </div>
+        <div class="items2-wrapper">
+          <div class="input-group items2">
+            <input type="text" name="Street" id="reg-street" required />
+            <label for="Street">Street</label>
+          </div>
+          <div class="input-group items2">
+            <input type="text" name="Number" id="reg-number" required />
+            <label for="Number">House Number</label>
+          </div>
         </div>
         <input type="submit" value="Register" class="submit-btn" />
-        <a href="login.html">
+        <a href="/frontend/auth/login.html">
           <input type="button" value="Back to Login" class="submit-btn" />
         </a>
         <p id="result"></p>
       </form>
     </div>
+
+    <footer class="footer">
+      <div class="items3">
+        <img
+          class="left"
+          src="/frontend/4Dudes-Photoroom.png"
+          alt="Logo"
+          sizes="50"
+        />
+      </div>
+      <div class="items3">
+        <p class="center">
+          <a href="/frontend/imprint.html"> Impressum </a>
+          <a href="/frontend/agb.html"> AGB's </a>
+          <a href="/frontend/datenschutz.html"> Datenschutz </a>
+        </p>
+      </div>
+      <div class="items3">
+        <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
