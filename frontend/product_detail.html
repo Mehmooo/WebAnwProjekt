@@ -1,71 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produkt Detail</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="product_detail_view">
-    <div class="page-container">
-        <header class="top-bar">
-            <div class="logo-box">
-                <span>Logo</span>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="headerfooter.css" />
+    <link rel="shortcut icon" href="4Dudes-Photoroom.png" type="image/x-icon" />
+  </head>
+  <body class="product_detail_view">
+    <header class="header">
+      <div class="Logo">
+        <a href="">
+          <img src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+          <h1>4Dudes</h1>
+        </a>
+      </div>
+      <div class="nav">
+        <a href="">
+          <input type="button" value="Login" class="but" />
+        </a>
+        <a href="">
+          <input type="button" value="ACCOUNT" class="but" />
+        </a>
+        <a href="">
+          <input type="button" value="EINKAUFSWAGEN" class="but" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="page-container main-box">
+        <div class="product_detail_grid">
+          <div class="picture_area_grid">
+            <img src="mini_trex.png" />
+          </div>
+          <div class="product_text_area_grid">
+            <div class="product_detail_title">
+              <h1>Produkt 1</h1>
             </div>
-
-            <nav class="top-nav">
-                <a href="">Mein Account</a>
-                <a href="login.html">Anmelden</a>
-                <a href="cart.html" class="cart-link">🛒</a>
-            </nav>
-        </header>
-
-        <main class="main-box">
-            <div class="product_detail_grid">
-                <div class="picture_area_grid">
-                    <img src="mini_trex.png">
-                </div>
-                <div class="product_text_area_grid">
-                    <div class="product_detail_title">
-                        <h1>Produkt 1</h1>
-                    </div>
-                    <div class="product_detail_information">
-                        <p>9,99 €</p>
-                        <div class="product_detail_button_group">
-                            <button id="variant1">Schwarz</button>
-                            <button id="variant2">Gelb</button>
-                            <button id="variant3">Orange</button>
-                            <button id="variant4">Blau</button>
-                        </div>
-                        <div class="product_detail_amount_input">
-                            <p><strong>Anzahl:</strong></p>
-                            <button class="decrement_button">-</button>
-                            <input type="text" value="1">
-                            <button class="increment_button">+</button>
-                        </div>
-                        <div class="product_detail_add_cart">
-                            <a href="cart.html">
-                                <button id="add-cart">In den Warenkorb legen</button>
-                            </a>
-                        </div>
-                        <div class="product_detail_short_descr">
-                            <p><strong>Beschreibung:</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Doloribus mollitia assumenda animi officia laboriosam incidunt odio nobis eveniet molestiae amet dignissimos tempora sequi enim beatae nesciunt fugiat modi, 
-                                temporibus cupiditate odit alias magni fuga dolor suscipit saepe? 
-                                Fugiat soluta deserunt, autem cumque est natus corrupti debitis?</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="product_detail_information">
+              <p>9,99 €</p>
+              <div class="product_detail_button_group">
+                <button id="variant1">Schwarz</button>
+                <button id="variant2">Gelb</button>
+                <button id="variant3">Orange</button>
+                <button id="variant4">Blau</button>
+              </div>
+              <div class="product_detail_amount_input">
+                <p><strong>Anzahl:</strong></p>
+                <button class="decrement_button">-</button>
+                <input type="text" value="1" />
+                <button class="increment_button">+</button>
+              </div>
+              <div class="product_detail_add_cart">
+                <a href="cart.html">
+                  <button id="add-cart">In den Warenkorb legen</button>
+                </a>
+              </div>
+              <div class="product_detail_short_descr">
+                <p>
+                  <strong>Beschreibung:</strong><br />Lorem ipsum dolor sit,
+                  amet consectetur adipisicing elit. Doloribus mollitia
+                  assumenda animi officia laboriosam incidunt odio nobis eveniet
+                  molestiae amet dignissimos tempora sequi enim beatae nesciunt
+                  fugiat modi, temporibus cupiditate odit alias magni fuga dolor
+                  suscipit saepe? Fugiat soluta deserunt, autem cumque est natus
+                  corrupti debitis?
+                </p>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-        </main>
-
-        <footer class="bottom-footer">
-            <a href="imprint.html">Impressum</a>
-            <a href="">AGB</a>
-            <a href="">Datenschutzerklärung</a>
-        </footer>
-    </div>
-    
-</body>
+    <footer class="footer">
+      <div class="items3">
+        <img class="left" src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+      </div>
+      <div class="items3">
+        <p class="center">
+          <a href=""> Impressum </a>
+          <a href=""> AGB's </a>
+          <a href=""> Datenschutz </a>
+        </p>
+      </div>
+      <div class="items3">
+        <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>

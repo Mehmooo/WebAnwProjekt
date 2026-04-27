@@ -12,11 +12,9 @@ body {
 body.dashboard-page {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #efefef;
   display: block;
   min-height: 100vh;
   height: auto;
-  padding: 20px 0;
 }
 
 /* ===== CONTAINER ===== */
@@ -76,7 +74,7 @@ body.dashboard-page {
 /* ===== MAIN BOX ===== */
 
 .main-box {
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
   margin-top: 18px;
   padding: 20px;
   box-sizing: border-box;

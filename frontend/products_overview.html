@@ -1,108 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produktdarstellung</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="products_overview">
-    <div class="page-container">
-        <header class="top-bar">
-            <div class="logo-box">
-                <span>Logo</span>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="headerfooter.css" />
+    <link rel="shortcut icon" href="4Dudes-Photoroom.png" type="image/x-icon" />
+  </head>
+  <body class="products_overview">
+    <header class="header">
+      <div class="Logo">
+        <a href="">
+          <img src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+          <h1>4Dudes</h1>
+        </a>
+      </div>
+      <div class="nav">
+        <a href="">
+          <input type="button" value="Login" class="but" />
+        </a>
+        <a href="">
+          <input type="button" value="ACCOUNT" class="but" />
+        </a>
+        <a href="">
+          <input type="button" value="EINKAUFSWAGEN" class="but" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="page-container main-box">
+        <div class="products_overview_grid">
+          <!--Produkt 1-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img
+                class="products_image_overview"
+                src="geometrische_katze.png"
+              />
+              <p>Geometrische Katze<br />9,99€</p>
             </div>
-            <nav class="top-nav">
-                <a href="">Mein Account</a>
-                <a href="login.html">Anmelden</a>
-                <a href="cart.html">🛒</a>
-            </nav>
-        </header>
+          </a>
 
-        <main class="main-box">
-            <div class="products_overview_grid">
-                <!--Produkt 1-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="geometrische_katze.png">
-                    <p>Geometrische Katze<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 2-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="oktopus_toy.png">
-                    <p>Oktopus Toy<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 3-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="geometrische_pflanze.png">
-                    <p>Geometrische Pflanze<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 4-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="schreibtisch_organizer.png">
-                    <p>Schreibtisch Organizer<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 5-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="geometrische_wolfsskulptur.png">
-                    <p>Geometrische Wolfsskulptur<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 6-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="kleines_drachenmodell.png">
-                    <p>Kleines Drachenmodell<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 7-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="raketenmodell.png">
-                    <p>Raketenmodell<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 8-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="mini_trex.png">
-                    <p>Mini T-Rex<br>9,99€</p>
-                </div>
-                </a>
-
-                <!--Produkt 9-->
-                <a href="product_detail.html" class="product-card">
-                <div class="products_square">
-                    <img class="products_image_overview" src="boot_modell.png">
-                    <p>Boot Modell<br>9,99€</p>
-                </div>
-                </a>
+          <!--Produkt 2-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img class="products_image_overview" src="oktopus_toy.png" />
+              <p>Oktopus Toy<br />9,99€</p>
             </div>
-            
-        </main>
+          </a>
 
-        <footer class="bottom-footer">
-            <!--Die Verlinkungen müssen noch rein-->
-            <a href="imprint.html">Impressum</a>
-            <a href="">AGB</a>
-            <a href="">Datenschutzerklärung</a>
-        </footer>
-    </div>
-    
-</body>
+          <!--Produkt 3-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img
+                class="products_image_overview"
+                src="geometrische_pflanze.png"
+              />
+              <p>Geometrische Pflanze<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 4-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img
+                class="products_image_overview"
+                src="schreibtisch_organizer.png"
+              />
+              <p>Schreibtisch Organizer<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 5-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img
+                class="products_image_overview"
+                src="geometrische_wolfsskulptur.png"
+              />
+              <p>Geometrische Wolfsskulptur<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 6-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img
+                class="products_image_overview"
+                src="kleines_drachenmodell.png"
+              />
+              <p>Kleines Drachenmodell<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 7-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img class="products_image_overview" src="raketenmodell.png" />
+              <p>Raketenmodell<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 8-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img class="products_image_overview" src="mini_trex.png" />
+              <p>Mini T-Rex<br />9,99€</p>
+            </div>
+          </a>
+
+          <!--Produkt 9-->
+          <a href="product_detail.html" class="product-card">
+            <div class="products_square">
+              <img class="products_image_overview" src="boot_modell.png" />
+              <p>Boot Modell<br />9,99€</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="items3">
+        <img class="left" src="4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+      </div>
+      <div class="items3">
+        <p class="center">
+          <a href=""> Impressum </a>
+          <a href=""> AGB's </a>
+          <a href=""> Datenschutz </a>
+        </p>
+      </div>
+      <div class="items3">
+        <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>
