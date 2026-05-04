@@ -4,10 +4,12 @@ body {
   color: black;
   background: rgba(20, 100, 220, 0.8);
 }
+
 .items3 {
   flex: 0 0 auto;
-  width: 33.333333333333333333333333333333%;
+  width: 33.3333333333%;
 }
+
 .header {
   position: fixed;
   top: 0;
@@ -17,40 +19,46 @@ body {
   align-items: center;
   height: 50px;
   width: 100%;
-  background-color: rgba(20, 50, 220, 0.8);
+  background-color: rgba(20, 50, 220, 0.9);
+  z-index: 1000;
 }
+
 .header img {
   height: 50px;
 }
+
 .header h1 {
   margin-left: 0px;
-  color: black;
+  color: white;
 }
+
 .header .Logo {
   display: flex;
   align-items: center;
   margin-left: 10px;
   transition: transform 0.3s ease;
 }
+
 .header .Logo:hover {
   transform: scale(1.05);
-  transition: transform 0.3s ease;
 }
+
 .header .Logo a {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
+
 .header .nav {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
+
 .header .but {
   background: rgba(20, 50, 220, 0.8);
   border: 2px solid rgba(20, 20, 220, 0.9);
-  outline: rgba(0, 0, 0, 0.5);
-  color: black;
+  color: white;
   padding: 5px 10px;
   margin-left: 5px;
   border-radius: 5px;
@@ -59,20 +67,19 @@ body {
     background 0.3s ease,
     box-shadow 0.3s ease;
 }
+
 .header .but:hover {
   background: rgba(20, 20, 220, 1);
   cursor: pointer;
   box-shadow: 0 0 5px rgba(20, 50, 220, 0.8);
   transform: scale(1.01);
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
 }
+
 main {
   margin-top: 50px;
   padding: 10px;
 }
+
 .footer {
   position: relative;
   bottom: 0;
@@ -80,29 +87,33 @@ main {
   margin: 0;
   height: 50px;
   width: 100%;
-  background-color: rgba(20, 50, 220, 0.8);
+  background-color: rgba(20, 50, 220, 0.9);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black;
+  color: white;
   flex-wrap: nowrap;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
+
 .footer img {
   height: 50px;
 }
+
 .footer p {
-  color: black;
+  color: white;
   line-height: 15px;
   text-align: center;
 }
+
 .footer a {
-  color: darkblue;
+  color: white;
   text-decoration: none;
   margin: 0 5px;
 }
+
 .footer a:hover {
-  color: black;
+  color: #ddddff;
   text-decoration: underline;
 }
