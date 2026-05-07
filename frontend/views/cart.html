@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warenkorb Übersicht</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/headerfooter.css" />
+    <link rel="shortcut icon" href="4Dudes-Photoroom.png" type="image/x-icon" />
+  </head>
+
+  <body class="dashboard-page">
+    <header class="header">
+      <div class="Logo">
+        <a href="index.html">
+          <img src="./images/4Dudes-Photoroom.png" alt="Logo" />
+          <h1>4Dudes</h1>
+        </a>
+      </div>
+
+      <div class="nav">
+        <a href="auth/login.html">
+          <input type="button" value="Login" class="but" />
+        </a>
+        <a href="account.html">
+          <input type="button" value="ACCOUNT" class="but" />
+        </a>
+        <a href="cart.html">
+          <input type="button" value="EINKAUFSWAGEN" class="but" />
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-container main-box">
+        <h2 class="cart-title">Warenkorb Übersicht</h2>
+
+        <div class="cart-table">
+          <div class="cart-row cart-head">
+            <div>Produkt</div>
+            <div>Variante</div>
+            <div>Menge</div>
+            <div>Einzelpreis</div>
+            <div>Summe</div>
+            <div></div>
+          </div>
+
+          <div class="cart-row">
+            <div class="cart-product">
+              <img src="mini_trex.png" alt="Mini T-Rex" />
+              <span>Mini T-Rex</span>
+            </div>
+            <div>Grau</div>
+            <div>1</div>
+            <div class="price">9,99 €</div>
+            <div class="price">9,99 €</div>
+            <div class="cart-remove">X</div>
+          </div>
+
+          <div class="cart-row">
+            <div class="cart-product">
+              <img src="boot_modell.png" alt="Boot Modell" />
+              <span>Boot Modell</span>
+            </div>
+            <div>Grau</div>
+            <div>1</div>
+            <div class="price">9,99 €</div>
+            <div class="price">9,99 €</div>
+            <div class="cart-remove">X</div>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <p>Zwischensumme: <strong>19,98 €</strong></p>
+          <p>enth. MwSt.: <strong>3,19 €</strong></p>
+          <p class="cart-total">Bestellsumme: <strong>19,98 €</strong></p>
+        </div>
+
+        <div class="cart-buttons">
+          <a href="products_overview.html" class="cart-action-button">
+            Weiter shoppen
+          </a>
+          <a href="checkout.html" class="cart-action-button">
+            Zum Checkout
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="items3">
+        <img class="left" src="4Dudes-Photoroom.png" alt="Logo" />
+      </div>
+
+      <div class="items3">
+        <p class="center">
+          <a href="imprint.html">Impressum</a>
+          <a href="agb.html">AGB's</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </p>
+      </div>
+
+      <div class="items3">
+        <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
