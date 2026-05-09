@@ -47,19 +47,19 @@
 
           <div class="start-cards">
             <div class="start-card">
-              <img src="../images/geometrische_katze.png" alt="Geometrische Katze" />
+              <!--<img src="../images/geometrische_katze.png" alt="Geometrische Katze" />-->
               <h3>Dekofiguren</h3>
               <p>Moderne 3D-Figuren wie Katze, Wolf, Drache oder T-Rex.</p>
             </div>
 
             <div class="start-card">
-              <img src="../images/schreibtisch_organizer.png" alt="Schreibtisch Organizer" />
+              <!--<img src="../images/schreibtisch_organizer.png" alt="Schreibtisch Organizer" />-->
               <h3>Praktische Produkte</h3>
               <p>Organizer und kleine Helfer für den Alltag.</p>
             </div>
 
             <div class="start-card">
-              <img src="../images/raketenmodell.png" alt="Raketenmodell" />
+              <!--<img src="../images/raketenmodell.png" alt="Raketenmodell" />-->
               <h3>Modelle & Spielzeug</h3>
               <p>Kleine Modelle wie Raketen, Boote oder Figuren.</p>
             </div>
@@ -95,5 +95,18 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', loadHomepage);
+      var imagePfad = '../images/'
+      const imagesId = [1, 3, 7]
+
+      async function loadHomepage() {
+        for (let i = 0; i < imagesId.length; i++) {
+          await loadPicturesHomepage('/loadPicture', imagesId[i]);
+        }
+
+      }
+    </script>
   </body>
 </html>
