@@ -99,3 +99,13 @@ INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (6, 'produkt6.png', 6);
 INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (7, 'produkt7.png', 7);
 INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (8, 'produkt8.png', 8);
 INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (9, 'produkt9.png', 9);
+
+INSERT INTO Benutzerrolle (id, bezeichnung) VALUES (1, 'admin-zugaenge');
+INSERT INTO Benutzerrolle (id, bezeichnung) VALUES (2, 'kunde-zugaenge');
+
+
+INSERT INTO Adresse (id, strasse, hausnummer, plz, ort) VALUES (1, 'Runkellenstr. ', '6', '72379', 'Hechingen');
+
+INSERT INTO Person (id, anrede, vorname, nachname, adresseId, telefonnummer, email, geburtstag) VALUES (1, 0, 'Mehmet', 'Akin', 1, '+491627948080', 'akinmehm@hs-albsig.de', NULL);
+
+INSERT INTO Benutzer (id, benutzername, passwort, benutzerrolleId, personId) VALUES (1, 'admin1', 'test123', 1, 1);
