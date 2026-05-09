@@ -1,22 +1,9 @@
-CREATE TABLE Mehrwertsteuer (
-	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	bezeichnung TEXT NOT NULL,
-	steuerSatz REAL NOT NULL DEFAULT 19.0
-);
-
 CREATE TABLE Produkt (
 	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	kategorieId INTEGER NOT NULL,
 	bezeichnung TEXT NOT NULL,
 	beschreibung TEXT NOT NULL,
-	mehrwertsteuerId INTEGER NOT NULL,
 	details TEXT DEFAULT NULL,
 	preis REAL NOT NULL DEFAULT 0.0,
-	prozente REAL NOT NULL DEFAULT 0.0,
-	datenblattId INTEGER DEFAULT NULL,
-	--CONSTRAINT fk_Produkt1 FOREIGN KEY (kategorieId) REFERENCES Produktkategorie(id),
-	CONSTRAINT fk_Produkt2 FOREIGN KEY (mehrwertsteuerId) REFERENCES Mehrwertsteuer(id),
-	--CONSTRAINT fk_Produkt3 FOREIGN KEY (datenblattId) REFERENCES Download(id)
 );
 
 CREATE TABLE Produktbild (
@@ -27,21 +14,12 @@ CREATE TABLE Produktbild (
 );
 
 
-CREATE TABLE Land (
-	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	kennzeichnung TEXT NOT NULL,
-	bezeichnung TEXT NOT NULL	
-);
-
 CREATE TABLE Adresse (
 	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	strasse TEXT NOT NULL,
 	hausnummer TEXT NOT NULL,
-	adresszusatz TEXT NOT NULL,
 	plz TEXT NOT NULL,
 	ort TEXT NOT NULL,
-	landId INTEGER NOT NULL,
-	CONSTRAINT fk_Adresse1 FOREIGN KEY (landId) REFERENCES Land(id)
 );
 
 CREATE TABLE Person (
@@ -62,8 +40,13 @@ CREATE TABLE Benutzer (
 	passwort TEXT NOT NULL,
 	benutzerrolleId INTEGER NOT NULL,
 	personId INTEGER DEFAULT NULL,
-	--CONSTRAINT fk_Benutzer1 FOREIGN KEY (benutzerrolleId) REFERENCES Benutzerrolle(id),
+	CONSTRAINT fk_Benutzer1 FOREIGN KEY (benutzerrolleId) REFERENCES Benutzerrolle(id),
 	CONSTRAINT fk_Benutzer2 FOREIGN KEY (personId) REFERENCES Person(id)
+);
+
+CREATE TABLE Benutzerrolle (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	bezeichnung TEXT NOT NULL
 );
 
 CREATE TABLE Zahlungsart (
