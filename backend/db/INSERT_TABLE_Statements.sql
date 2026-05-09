@@ -87,3 +87,15 @@ Das Boot eignet sich hervorragend als Dekoration für Technikfans, Modellbau-Lie
 Dank seiner kompakten Größe passt das Modell perfekt in moderne Wohnräume, Büros oder Gaming-Setups und bringt einen Hauch von Abenteuer und Kreativität in jede Umgebung.',
 
 '5x5 cm', 9.99);
+
+
+
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (1, 'produkt1.png', 1);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (2, 'produkt2.png', 2);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (3, 'produkt3.png', 3);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (4, 'produkt4.png', 4);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (5, 'produkt5.png', 5);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (6, 'produkt6.png', 6);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (7, 'produkt7.png', 7);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (8, 'produkt8.png', 8);
+INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (9, 'produkt9.png', 9);
