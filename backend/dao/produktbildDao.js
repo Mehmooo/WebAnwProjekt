@@ -9,6 +9,17 @@ class ProduktbildDao {
         return this._conn;
     }
 
+    loadById(id) {
+        var sql = "SELECT bildpfad FROM Produktbild WHERE id=?";
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result))
+            throw new Error('Kein Ressourceneintrag gefunden für die id=' + id);
+        
+        return result;
+    }
+
 }
 
 module.exports = ProduktbildDao;
