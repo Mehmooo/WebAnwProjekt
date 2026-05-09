@@ -68,7 +68,7 @@ Ein ideales Geschenk für Kinder, Erwachsene oder alle, die sich für Weltraum, 
 
 '5x10 cm', 9.99);
 
-INSERT INTO Produkt (id, bezeichnung, beschriftung, details, preis)
+INSERT INTO Produkt (id, bezeichnung, beschreibung, details, preis)
 VALUES
 (8, 'Mini T-Rex', 'Dieses beeindruckende T-Rex-Modell bringt die Faszination der Dinosaurier direkt zu dir nach Hause. 
 Die detailreiche Gestaltung kombiniert markante geometrische Formen mit einem modernen Low-Poly-Look und sorgt für eine außergewöhnliche Optik.
@@ -78,7 +78,7 @@ Perfekt geeignet für Dinosaurier-Fans, Sammler, Gamer oder als originelle Gesch
 
 '10x7 cm', 9.99);
 
-INSERT INTO Produkt (id, bezeichnung, beschriftung, details, preis)
+INSERT INTO Produkt (id, bezeichnung, beschreibung, details, preis)
 VALUES
 (9, 'Boot Modell', 'Das detailreiche Boot-Modell überzeugt durch sein minimalistisches Design und die authentische 3D-Druck-Optik. 
 Inspiriert von klassischen Schiffsmodellen kombiniert dieses Dekorationsobjekt moderne Fertigungstechnologie mit zeitlosem maritimen Stil.
