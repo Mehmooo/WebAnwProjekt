@@ -3,7 +3,7 @@ CREATE TABLE Produkt (
 	bezeichnung TEXT NOT NULL,
 	beschreibung TEXT NOT NULL,
 	details TEXT DEFAULT NULL,
-	preis REAL NOT NULL DEFAULT 0.0,
+	preis REAL NOT NULL DEFAULT 0.0
 );
 
 CREATE TABLE Produktbild (
@@ -19,7 +19,7 @@ CREATE TABLE Adresse (
 	strasse TEXT NOT NULL,
 	hausnummer TEXT NOT NULL,
 	plz TEXT NOT NULL,
-	ort TEXT NOT NULL,
+	ort TEXT NOT NULL
 );
 
 CREATE TABLE Person (
