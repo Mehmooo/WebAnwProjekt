@@ -10,6 +10,7 @@ class ProduktbildDao {
     }
 
     loadById(id) {
+        console.log('Vor den SQL Statement');
         var sql = "SELECT bildpfad FROM Produktbild WHERE id=?";
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);

@@ -1,7 +1,10 @@
 const apiMain = 'http://localhost:8000/api';
 
 async function loadPicturesHomepage(endpoint, id) {
-    var apiFetch = apiMain + endpoint;
+    console.log("In der fetchRequests.js")
+    var idString = id.toString();
+    console.log("Der ID String ist: " + idString);
+    var apiFetch = apiMain + endpoint + '/' + idString;
     console.log("API Fetch Link: " + apiFetch);
 
     try {

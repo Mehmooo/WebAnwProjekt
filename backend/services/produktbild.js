@@ -9,7 +9,8 @@ serviceRouter.get('loadPicture/:id', function(request, response) {
     const produktbildDao = new ProduktbildDao(request.app.locals.dbConnection);
 
     try {
-        var obj = produktbildDao.loadById(request.body.id);
+        console.log("Im Try Block drinne");
+        var obj = produktbildDao.loadById(request.params.id);
         response.status(200).json(obj);
     } catch (ex) {
         console.log('Service Produktbild: Fehler beim Laden der Ressource. Fehler Nachricht: ' + ex.message);

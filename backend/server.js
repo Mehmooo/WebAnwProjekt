@@ -81,6 +81,9 @@ try {
     serviceRouter = require('./services/zahlungsart.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
+    serviceRouter = require('./services/produktbild.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
   
 
 
