@@ -1,14 +1,12 @@
 const apiMain = 'http://localhost:8000/api';
 
 async function loadPicturesHomepage(endpoint, id) {
-    console.log("In der fetchRequests.js")
     var idString = id.toString();
-    console.log("Der ID String ist: " + idString);
-    var apiFetch = apiMain + endpoint + '/' + idString;
-    console.log("API Fetch Link: " + apiFetch);
+    var apiFetch = apiMain + endpoint + '/' + idString; // To build the API URL to the endpoint
+    console.log("The API Fetch URL" + apiFetch);
 
     try {
-        const response = await fetch(apiFetch);
+        const response = await fetch(apiFetch); //Call the Get Routes in the service produktbild.js
         const data = response.json();
 
         if (response.status === 200) {
