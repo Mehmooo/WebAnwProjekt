@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/headerfooter.css" />
     <link rel="shortcut icon" href="../images/4Dudes-Photoroom.png" type="image/x-icon" />
-    <script src="../scripts/loadAllProductsInOverview.js" defer></script> //Loading parallel JS, after HTML Parsing -> JS will be Running
+    <script src="../scripts/loadAllProductsInOverview.js"></script> //Loading parallel JS, after HTML Parsing -> JS will be Running
+    <script src="../scripts/fetchRequests.js"></script>
   </head>
   <body class="products_overview">
     <header class="header">
@@ -34,89 +35,48 @@
         <div class="products_overview_grid">
           <!--Produkt 1-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img
-                class="products_image_overview"
-                src="../images/geometrische_katze.png"
-              />
-              <p>Geometrische Katze<br />9,99€</p>
-            </div>
+           
+            
           </a>
 
           <!--Produkt 2-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img class="products_image_overview" src="../images/oktopus_toy.png" />
-              <p>Oktopus Toy<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 3-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img
-                class="products_image_overview"
-                src="../images/geometrische_pflanze.png"
-              />
-              <p>Geometrische Pflanze<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 4-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img
-                class="products_image_overview"
-                src="../images/schreibtisch_organizer.png"
-              />
-              <p>Schreibtisch Organizer<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 5-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img
-                class="products_image_overview"
-                src="../images/geometrische_wolfsskulptur.png"
-              />
-              <p>Geometrische Wolfsskulptur<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 6-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img
-                class="products_image_overview"
-                src="../images/kleines_drachenmodell.png"
-              />
-              <p>Kleines Drachenmodell<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 7-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img class="products_image_overview" src="../images/raketenmodell.png" />
-              <p>Raketenmodell<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 8-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img class="products_image_overview" src="../images/mini_trex.png" />
-              <p>Mini T-Rex<br />9,99€</p>
-            </div>
+            
           </a>
 
           <!--Produkt 9-->
           <a href="product_detail.html" class="product-card">
-            <div class="products_square">
-              <img class="products_image_overview" src="../images/boot_modell.png" />
-              <p>Boot Modell<br />9,99€</p>
-            </div>
+            
           </a>
         </div>
       </div>
@@ -137,5 +97,8 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', loadAllProductsInOverview('/loadAllProducts'));
+    </script>
   </body>
 </html>

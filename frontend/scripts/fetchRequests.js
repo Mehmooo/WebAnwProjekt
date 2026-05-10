@@ -20,3 +20,55 @@ async function loadPicturesHomepage(endpoint, id) {
         console.log(error);
     }
 }
+
+async function loadAllProductsInOverview(endpoint) {
+    console.log("Jetzt auf PRODUKTSÜBERSICHTSEITE");
+    var apiFetch = apiMain + endpoint;
+    console.log("The API Fetch URL" + apiFetch);
+    var mainImagePfad = '../images/';
+
+    try {
+        const response = await fetch(apiFetch);
+        const data = await response.json();
+
+        //Continue with new API Call
+        for (let i = 0; i < data.length; i++) {
+            let imagePfad = await loadPicturesHomepage('/loadPicture', data[i].id);
+            let loadPath = mainImagePfad + imagePfad.bildpfad;
+            data[i].bildpfad = loadPath;
+        }
+
+        if (response.status === 200) {
+            console.log('Status Successful, now the new API Call for loadPicture')
+            var divParent = document.querySelector('.products_overview_grid');
+            var i = 0;
+            for (let box of divParent.children) {
+                console.log("In der for loop");
+                console.log(data[i].preis);
+                console.log(data[i].bildpfad);
+                let img = document.createElement('img');
+                let p = document.createElement('p');
+                let div = document.createElement('div');
+                p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis}`
+                img.src = data[i].bildpfad;
+                img.alt = 'DEFAULT';
+                div.classList.add('products_square');
+                div.href = "product_detail.html";
+                box.appendChild(div);
+                div.appendChild(img);
+                div.appendChild(p);
+                i++;
+            }
+        } else {
+            console.log('Status Unsuccessful look at this status Code ' + data.status);
+            return data;
+        }
+        
+        
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("ALLE PRODUKTE IN OVERVIEW GELADEN");
+
+}

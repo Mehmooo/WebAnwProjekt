@@ -9,6 +9,17 @@ class ProduktDao {
     getConnection() {
         return this._conn;
     }
+
+    loadAllProducts() {
+        var sql = 'SELECT id, bezeichnung, preis FROM Produkt';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isUndefined(result))
+            throw new Error('Keine Ressourceneinträge bei Produkte gefunden');
+
+        return result;
+    }
 }
 
 module.exports = ProduktDao;
