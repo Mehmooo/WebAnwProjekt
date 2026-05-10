@@ -108,7 +108,7 @@
         const fullContainer = document.querySelector('.start-cards');
         // This loop get all image Paths by the DB
         for (let i = 0; i < imagesId.length; i++) {
-          let imagePfad = await loadPicturesHomepage('/loadPicture', imagesId[i]);
+          let imagePfad = await loadPicturesHomepage('/loadPicture', imagesId[i]); //Call Function in the extern JS Data File 'fetchRequests.js'
           let loadPath = mainImagePfad + imagePfad.bildpfad;
           loadPathList.push(loadPath)
           
