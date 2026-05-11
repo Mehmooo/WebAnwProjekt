@@ -122,46 +122,46 @@ INSERT INTO Variante (id, farbe) VALUES (3, 'Orange');
 INSERT INTO Variante (id, farbe) VALUES (4, 'Blau');
 
 INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 1, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 1, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 1, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 1, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (2, 1, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (3, 1, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (4, 1, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 2, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 2, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 2, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 2, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (5, 2, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (6, 2, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (7, 2, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (8, 2, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 3, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 3, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 3, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 3, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (9, 3, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (10, 3, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (11, 3, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (12, 3, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 4, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 4, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 4, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 4, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (13, 4, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (14, 4, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (15, 4, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (16, 4, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 5, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 5, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 5, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 5, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (17, 5, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (18, 5, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (19, 5, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (20, 5, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 6, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 6, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 6, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 6, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (21, 6, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (22, 6, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (23, 6, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (24, 6, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 7, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 7, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 7, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 7, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (25, 7, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (26, 7, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (27, 7, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (28, 7, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 8, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 8, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 8, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 8, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (29, 8, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (30, 8, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (31, 8, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (32, 8, 4);
 
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 9, 1);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 9, 2);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 9, 3);
-INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (1, 9, 4);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (33, 9, 1);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (34, 9, 2);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (35, 9, 3);
+INSERT INTO Produkt_Variante (id, produktId, farbeId) VALUES (36, 9, 4);
