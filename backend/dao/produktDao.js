@@ -20,6 +20,17 @@ class ProduktDao {
 
         return result;
     }
+
+    loadProductById(id) {
+        var sql = 'SELECT * FROM Produkt WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result))
+            throw new Error('Keine Ressourceneintrag zur Produkt ID = ' + id + ' gefunden');
+
+        return result;
+    }
 }
 
 module.exports = ProduktDao;

@@ -7,7 +7,7 @@ async function loadPicturesHomepage(endpoint, id) {
 
     try {
         const response = await fetch(apiFetch); //Call the Get Routes in the service produktbild.js
-        const data = response.json();
+        const data = await response.json();
 
         if (response.status === 200) {
             console.log("Status Erfolgreich")
@@ -88,4 +88,31 @@ async function loadAllProductsInOverview(endpoint) {
 
     console.log("ALLE PRODUKTE IN OVERVIEW GELADEN");
 
+}
+
+async function loadProductDetail() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    var apiFetch = apiMain + '/loadProduct/' + id.toString();
+
+    try {
+        const response = await fetch(apiFetch);
+        const data = await response.json();
+        const title = document.querySelector('#productTitle');
+        const price = document.querySelector('#productPrice');
+        const descr = document.querySelector('#productDescr');
+        title.textContent = data.bezeichnung;
+        price.textContent = data.preis + '€';
+        descr.textContent = data.beschreibung;
+        //Call for Picture load
+        const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
+        console.log('Antwort von Detail Bild: ' + responsePictureData);
+        const pictureDetail = document.querySelector('#pictureDetailSite');
+        pictureDetail.src = '../images/' + responsePictureData.bildpfad;
+        pictureDetail.alt = 'DEFAULT';
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("DETAILSEITE FERTIG GELADEN");
+    
 }

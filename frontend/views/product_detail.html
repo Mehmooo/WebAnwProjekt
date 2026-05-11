@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/headerfooter.css" />
     <link rel="shortcut icon" href="../images/4Dudes-Photoroom.png" type="image/x-icon" />
+    <script src="../scripts/fetchRequests.js"></script>
   </head>
   <body class="product_detail_view">
     <header class="header">
@@ -32,14 +33,14 @@
       <div class="page-container main-box">
         <div class="product_detail_grid">
           <div class="picture_area_grid">
-            <img src="../images/mini_trex.png" />
+            <img id='pictureDetailSite' />
           </div>
           <div class="product_text_area_grid">
             <div class="product_detail_title">
-              <h1>Produkt 1</h1>
+              <h1 id="productTitle"></h1>
             </div>
             <div class="product_detail_information">
-              <p>9,99 €</p>
+              <p id="productPrice"></p>
               <div class="product_detail_button_group">
                 <button id="variant1">Schwarz</button>
                 <button id="variant2">Gelb</button>
@@ -58,14 +59,8 @@
                 </a>
               </div>
               <div class="product_detail_short_descr">
-                <p>
-                  <strong>Beschreibung:</strong><br />Lorem ipsum dolor sit,
-                  amet consectetur adipisicing elit. Doloribus mollitia
-                  assumenda animi officia laboriosam incidunt odio nobis eveniet
-                  molestiae amet dignissimos tempora sequi enim beatae nesciunt
-                  fugiat modi, temporibus cupiditate odit alias magni fuga dolor
-                  suscipit saepe? Fugiat soluta deserunt, autem cumque est natus
-                  corrupti debitis?
+                <p id="productDescr">
+                  <strong>Beschreibung:</strong><br />
                 </p>
               </div>
             </div>
@@ -89,5 +84,8 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', loadProductDetail);
+    </script>
   </body>
 </html>

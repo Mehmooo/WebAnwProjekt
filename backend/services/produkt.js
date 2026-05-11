@@ -18,4 +18,17 @@ serviceRouter.get('/loadAllProducts', function(request, response) {
     }
 });
 
+serviceRouter.get('/loadProduct/:id', function(request, response) {
+    const produktDao = new ProduktDao(request.app.locals.dbConnection);
+    try {
+        var obj = produktDao.loadProductById(request.params.id);
+        response.status(200).json(obj);
+    } catch (ex) {
+        response.status(400).json({
+            'fehler': true,
+            'nachricht': ex.message
+        });
+    }
+});
+
 module.exports = serviceRouter;
