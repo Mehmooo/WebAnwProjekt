@@ -71,3 +71,16 @@ CREATE TABLE Bestellposition (
 	CONSTRAINT fk_Bestellposition1 FOREIGN KEY (bestellungId) REFERENCES Bestellung(id),
 	CONSTRAINT fk_Bestellposition2 FOREIGN KEY (produktId) REFERENCES Produkt(id)
 );
+
+CREATE TABLE Variante (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	farbe TEXT NOT NULL,
+)
+
+CREATE TABLE Produkt_Variante (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	produktId INTEGER NOT NULL,
+	farbeId INTEGER NOT NULL,
+	CONSTRAINT fk_produktfarbe1 FOREIGN KEY (produktId) REFERENCES Produkt(id),
+	CONSTRAINT fk_produktfarbe2 FOREIGN KEY (farbeId) REFERENCES Variante(id)
+);
