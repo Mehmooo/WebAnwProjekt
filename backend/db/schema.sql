@@ -74,7 +74,7 @@ CREATE TABLE Bestellposition (
 
 CREATE TABLE Variante (
 	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	farbe TEXT NOT NULL,
+	farbe TEXT NOT NULL
 );
 
 CREATE TABLE Produkt_Variante (
