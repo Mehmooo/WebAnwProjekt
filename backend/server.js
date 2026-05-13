@@ -84,7 +84,11 @@ try {
     serviceRouter = require('./services/produktbild.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-  
+    serviceRouter = require('./services/variante.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/produkt_variante.js');
+    app.use(TOPLEVELPATH, serviceRouter);
 
 
 
