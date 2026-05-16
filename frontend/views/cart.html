@@ -54,7 +54,7 @@
             <div>1</div>
             <div class="price">9,99 €</div>
             <div class="price">9,99 €</div>
-            <div class="cart-remove">X</div>
+            <button class="cart-remove" >X</button>
           </div>
 
           <div class="cart-row">
@@ -66,7 +66,7 @@
             <div>1</div>
             <div class="price">9,99 €</div>
             <div class="price">9,99 €</div>
-            <div class="cart-remove">X</div>
+            <button class="cart-remove" >X</button>
           </div>
         </div>
 
@@ -104,5 +104,16 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      buttons = document.querySelectorAll('.cart-remove');
+      console.log("Das Cart Remove Button Element: ", buttons);
+      buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const parent = event.target.parentElement;
+          parent.remove();
+        });
+      });
+    </script>
   </body>
 </html>
