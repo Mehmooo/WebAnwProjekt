@@ -117,26 +117,3 @@ async function loadProductDetail() {
     console.log("DETAILSEITE FERTIG GELADEN");
     
 }
-
-async function loadVariants() {
-    console.log("In der Load Variants fkt.");
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    var apiFetch = apiMain + '/loadAllVariants/' + id.toString();
-    console.log("Der API Fetch für Variants " + apiFetch);
-    const parent = document.querySelector('.product_detail_button_group');
-
-    try {
-        const response = await fetch(apiFetch);
-        const data = await response.json();
-        for (let i = 0; data.length; i++) {
-            let button = document.createElement('button');
-            button.innerText = `${data[i].descr}`;
-            parent.appendChild(button);
-
-        }
-    } catch (error) {
-        console.log(error);
-    }
-    console.log("BUTTON FERTIG GELADEN");
-}
