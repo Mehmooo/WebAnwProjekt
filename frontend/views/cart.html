@@ -106,34 +106,65 @@
     </footer>
     
     <script>
-      var idProducts = [8,9]
-      document.addEventListener('DOMContentLoaded', async (idProducts) => {
-        for (let i = 0; i < idProducts.length; i++) {
-          console.log("Cart for loop ", i);
-          const response = await fetch(`http://localhost:8000/loadProduct/${idProducts[i].toString()}`);
-          const data = await response.json();
-          const response2 = await fetch(`http://localhost:8000/loadPicture/${data[i].id.toString()}`);
-          const data2 = await response.json();
+      var idProducts = [8,9];
+      var rows = document.querySelectorAll('.cart-product');
+      console.log("Die Reihen für Produkte: ", rows);
+      var i = 0;
+      document.addEventListener('DOMContentLoaded', async () => {
+          for (const row of rows) {
+            console.log('FÜR DEN WARENKORB VOR FETCH');
+            console.log("Cart for loop ", i);
+            const response = await fetch(`http://localhost:8000/api/loadProduct/${idProducts[i].toString()}`);
+            const data = await response.json();
+            //const response2 = await fetch(`http://localhost:8000/api/loadPicture/${data[i].id.toString()}`);
+            //const data2 = await response.json();
 
-          const descr = data.bezeichnung;
-          const unitPrice = data.preis;
-          const picture = '../images/' + data2.bildpfad;
+            const descr = data.bezeichnung;
+            const unitPrice = data.preis;
+            const picture = data.bildpfad.bildpfad;
 
-          var parent = document.querySelector('.cart-product');
-          var img = document.createElement('img');
-          img.src = picture;
-          img.alt = 'DEFAULT';
-          var span = document.createElement('span');
-          span.innerText = descr;
+            //var parent = document.querySelector('.cart-product');
+            var img = document.createElement('img');
+            img.src = picture;
+            img.alt = 'DEFAULT';
+            var span = document.createElement('span');
+            span.innerText = descr;
 
-          parent.appendChild(img);
-          parent.appendChild(descr);
+            row.appendChild(img);
+            row.appendChild(span);
+            i++;
+          }
 
 
 
 
 
-        }
+          //console.log('FÜR DEN WARENKORB VOR FETCH');
+          //console.log("Cart for loop ", i);
+          //const response = await fetch(`http://localhost:8000/api/loadProduct/${idProducts[i].toString()}`);
+          //const data = await response.json();
+          ////const response2 = await fetch(`http://localhost:8000/api/loadPicture/${data[i].id.toString()}`);
+          ////const data2 = await response.json();
+//
+          //const descr = data.bezeichnung;
+          //const unitPrice = data.preis;
+          //const picture = data.bildpfad.bildpfad;
+//
+          //var parent = document.querySelector('.cart-product');
+          //var img = document.createElement('img');
+          //img.src = picture;
+          //img.alt = 'DEFAULT';
+          //var span = document.createElement('span');
+          //span.innerText = descr;
+//
+          //parent.appendChild(img);
+          //parent.appendChild(span);
+//
+//
+//
+
+
+        
       });
 
 
