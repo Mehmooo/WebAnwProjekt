@@ -11,12 +11,17 @@ class ProduktDao {
     }
 
     loadAllProducts() {
+        const produktBild = new ProduktbildDao(this._conn);
         var sql = 'SELECT id, bezeichnung, preis FROM Produkt';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
         if (helper.isUndefined(result))
             throw new Error('Keine Ressourceneinträge bei Produkte gefunden');
+
+        for (let i = 0; i<result.length; i++) {
+            result[i].bildpfad = produktBild.loadById(result[i].id);
+        }
 
         return result;
     }
