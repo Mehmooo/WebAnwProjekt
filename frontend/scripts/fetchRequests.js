@@ -58,24 +58,6 @@ async function loadAllProductsInOverview(endpoint) {
                 div.appendChild(img);
                 div.appendChild(p);
             }
-            //var i = 0;
-            //for (let box of divParent.children) {
-            //    console.log("In der for loop");
-            //    console.log(data[i].preis);
-            //    console.log(data[i].bildpfad);
-            //    let img = document.createElement('img');
-            //    let p = document.createElement('p');
-            //    let div = document.createElement('div');
-            //    p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis} €`;
-            //    img.src = data[i].bildpfad;
-            //    img.alt = 'DEFAULT';
-            //    div.classList.add('products_square');
-            //    div.href = "product_detail.html";
-            //    box.appendChild(div);
-            //    div.appendChild(img);
-            //    div.appendChild(p);
-            //    i++;
-            //}
         } else {
             console.log('Status Unsuccessful look at this status Code ' + data.status);
             return data;
