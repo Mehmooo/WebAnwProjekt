@@ -25,7 +25,7 @@ async function loadAllProductsInOverview(endpoint) {
     console.log("Jetzt auf PRODUKTSÜBERSICHTSEITE");
     var apiFetch = apiMain + endpoint;
     console.log("The API Fetch URL" + apiFetch);
-    var mainImagePfad = '../../backend/public/images/';
+    var mainImagePfad = '/images/';
 
     try {
         const response = await fetch(apiFetch);
@@ -108,7 +108,7 @@ async function loadProductDetail() {
         const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
         console.log('Antwort von Detail Bild: ' + responsePictureData);
         const pictureDetail = document.querySelector('#pictureDetailSite');
-        pictureDetail.src = '../../backend/public/images/' + responsePictureData.bildpfad;
+        pictureDetail.src = '/images/' + responsePictureData.bildpfad;
         pictureDetail.alt = 'DEFAULT';
         await loadVariants();
     } catch (error) {
