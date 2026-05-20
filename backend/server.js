@@ -15,6 +15,7 @@ Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 
 const helper = require('./helper.js');
 const fileHelper = require('./fileHelper.js');
+const path = require('path');
 console.log('Starting server...');
 
 try {
@@ -43,6 +44,12 @@ try {
     console.log('Binding middleware...');
     // setting folder for static files like images, pdfs aso
     app.use(express.static(__dirname + '/public'));
+    console.log(__dirname);
+    app.use(express.static(path.join(__dirname, "../frontend/views")));
+    app.use(express.static(path.join(__dirname, '../frontend/style')));
+
+
+
     // defining file upload limit
     app.use(fileUpload({
         createParentPath: true,
