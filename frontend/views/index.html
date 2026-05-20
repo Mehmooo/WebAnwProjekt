@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Startseite</title>
-    <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/headerfooter.css" />
-    <link rel="shortcut icon" href="../images/4Dudes-Photoroom.png" type="image/x-icon" />
-    <script src="../scripts/loadAllProductsInOverview.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/headerfooter.css" />
+    <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
+    <script src="../scripts/fetchRequests.js"></script>
   </head>
 
   <body class="dashboard-page">
     <header class="header">
       <div class="Logo">
         <a href="index.html">
-          <img src="../images/4Dudes-Photoroom.png" alt="Logo" />
+          <img src="/images/4Dudes-Photoroom.png" alt="Logo" />
           <h1>4Dudes</h1>
         </a>
       </div>
@@ -48,7 +48,7 @@
 
           <div class="start-cards">
             <div class="start-card">
-              <!--<img src="../images/geometrische_katze.png" alt="Geometrische Katze" />-->
+              <!--<img src="/images/produkt1.png" alt="Geometrische Katze" />-->
               <h3>Dekofiguren</h3>
               <p>Moderne 3D-Figuren wie Katze, Wolf, Drache oder T-Rex.</p>
             </div>
@@ -81,7 +81,7 @@
 
     <footer class="footer">
       <div class="items3">
-        <img class="left" src="../images/4Dudes-Photoroom.png" alt="Logo" />
+        <img class="left" src="/images/4Dudes-Photoroom.png" alt="Logo" />
       </div>
 
       <div class="items3">
@@ -97,10 +97,11 @@
       </div>
     </footer>
 
-    <script src="../scripts/fetchRequests.js"></script>
+    <script src="/fetchRequests.js"></script>
+    
     <script>
       document.addEventListener('DOMContentLoaded', loadHomepage);
-      var mainImagePfad = '../../backend/public/images/' //Main Path to the image Directory
+      var mainImagePfad = '/images/' //Main Path to the image Directory
       const imagesId = [1, 3, 7] //productPictureId, which Picture will be load
 
       async function loadHomepage() {
@@ -110,6 +111,7 @@
         for (let i = 0; i < imagesId.length; i++) {
           let imagePfad = await loadPicturesHomepage('/loadPicture', imagesId[i]); //Call Function in the extern JS Data File 'fetchRequests.js'
           let loadPath = mainImagePfad + imagePfad.bildpfad;
+          console.log("Die Bildpfade: ", loadPath);
           loadPathList.push(loadPath)
           
         }
@@ -125,5 +127,6 @@
 
       }
     </script>
+  
   </body>
 </html>
