@@ -45,8 +45,9 @@ try {
     // setting folder for static files like images, pdfs aso
     app.use(express.static(__dirname + '/public'));
     console.log(__dirname);
-    app.use(express.static(path.join(__dirname, "../frontend/views")));
+    app.use(express.static(path.join(__dirname, '../frontend/views')));
     app.use(express.static(path.join(__dirname, '../frontend/style')));
+    app.use(express.static(path.join(__dirname, '../frontend/scripts')));
 
 
 
