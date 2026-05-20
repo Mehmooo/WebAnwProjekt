@@ -31,13 +31,6 @@ async function loadAllProductsInOverview(endpoint) {
         const response = await fetch(apiFetch);
         const data = await response.json();
 
-        //Continue with new API Call
-        for (let i = 0; i < data.length; i++) {
-            let imagePfad = await loadPicturesHomepage('/loadPicture', data[i].id);
-            let loadPath = mainImagePfad + imagePfad.bildpfad;
-            data[i].bildpfad = loadPath;
-        }
-
         if (response.status === 200) {
             console.log('Status Successful, now the new API Call for loadPicture')
             var divParent = document.querySelector('.products_overview_grid');
@@ -50,7 +43,8 @@ async function loadAllProductsInOverview(endpoint) {
                 a.classList.add('product-card');
                 a.href = `product_detail.html?id=${data[i].id}`;
                 div.classList.add('products_square');
-                img.src = data[i].bildpfad;
+                img.src = '/images/' + data[i].bildpfad.bildpfad;
+                console.log("Bildpfad ", data[i].bildpfad.bildpfad);
                 img.alt = 'DEFAULT';
                 p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis} €`;
                 divParent.appendChild(a);
