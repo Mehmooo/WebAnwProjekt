@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "setup-db": "node setup-db.js",
+    "setup-db": "node ./backend/script-db.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./backend/server.js",
     "start": "node ./backend/server.js"
