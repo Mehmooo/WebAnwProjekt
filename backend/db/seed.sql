@@ -90,15 +90,15 @@ Dank seiner kompakten Größe passt das Modell perfekt in moderne Wohnräume, B�
 
 
 
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (1, '/images/produkt1.png', 1);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (2, '/images/produkt2.png', 2);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (3, '/images/produkt3.png', 3);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (4, '/images/produkt4.png', 4);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (5, '/images/produkt5.png', 5);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (6, '/images/produkt6.png', 6);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (7, '/images/produkt7.png', 7);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (8, '/images/produkt8.png', 8);
-INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (9, '/images/produkt9.png', 9);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (1, '/images/produkt1.png', 1, true);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (2, '/images/produkt2.png', 2, false);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (3, '/images/produkt3.png', 3, true);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (4, '/images/produkt4.png', 4, false);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (5, '/images/produkt5.png', 5, false);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (6, '/images/produkt6.png', 6, false);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (7, '/images/produkt7.png', 7, true);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (8, '/images/produkt8.png', 8, false);
+INSERT INTO Produktbild (id, bildpfad, produktId, on_homepage) VALUES (9, '/images/produkt9.png', 9, false);
 
 INSERT INTO Benutzerrolle (id, bezeichnung) VALUES (1, 'admin-zugaenge');
 INSERT INTO Benutzerrolle (id, bezeichnung) VALUES (2, 'kunde-zugaenge');
