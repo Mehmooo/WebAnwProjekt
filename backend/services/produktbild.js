@@ -19,6 +19,20 @@ serviceRouter.get('/loadPicture/:id', function(request, response) {
     }
 });
 
+serviceRouter.get('/loadPictureHomepage', function(request, response) {
+    const produktbildDao = new ProduktbildDao(request.app.locals.dbConnection);
+
+    try {
+        var obj = produktbildDao.loadByOnHomepage();
+        response.status(200).json(obj);
+    } catch (ex) {
+        response.status(400).json({
+            'fehler': true,
+            'nachricht': ex.message
+        });
+    }
+})
+
 
 
 

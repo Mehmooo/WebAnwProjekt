@@ -20,6 +20,17 @@ class ProduktbildDao {
         return result;
     }
 
+    loadByOnHomepage() {
+        var sql = "SELECT bildpfad FROM Produktbild WHERE on_homepage=true";
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isUndefined(result))
+            throw new Error('Kein Ressourceneintraege gefunden');
+
+        return result;
+    }
+
 }
 
 module.exports = ProduktbildDao;

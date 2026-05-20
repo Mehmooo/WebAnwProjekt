@@ -1,8 +1,7 @@
 const apiMain = 'http://localhost:8000/api';
 
-async function loadPicturesHomepage(endpoint, id) {
-    var idString = id.toString();
-    var apiFetch = apiMain + endpoint + '/' + idString; // To build the API URL to the endpoint
+async function loadPicturesHomepage(endpoint) {
+    var apiFetch = apiMain + endpoint; // To build the API URL to the endpoint
     console.log("The API Fetch URL" + apiFetch);
 
     try {

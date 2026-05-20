@@ -101,25 +101,22 @@
     
     <script>
       document.addEventListener('DOMContentLoaded', loadHomepage);
-      var mainImagePfad = '/images/' //Main Path to the image Directory
-      const imagesId = [1, 3, 7] //productPictureId, which Picture will be load
 
       async function loadHomepage() {
-        var loadPathList = [] //this empty Array get die Path Dir. for individual pictures
         const fullContainer = document.querySelector('.start-cards');
-        // This loop get all image Paths by the DB
-        for (let i = 0; i < imagesId.length; i++) {
-          let imagePfad = await loadPicturesHomepage('/loadPicture', imagesId[i]); //Call Function in the extern JS Data File 'fetchRequests.js'
-          let loadPath = mainImagePfad + imagePfad.bildpfad;
-          console.log("Die Bildpfade: ", loadPath);
-          loadPathList.push(loadPath)
-          
+        
+        let imagePaths = await loadPicturesHomepage('/loadPictureHomepage');
+        console.log("Nach Fetch Rückkehr: ", imagePaths);
+        for (let i = 0; i<imagePaths.length; i++) {
+          let loadPath = imagePaths.bildpfad;
         }
+          
+        
         var i = 0; //Iterator for take action in the pathList
         // This loop create all img Tags with the Path Attribute
         for (let box of fullContainer.children) {
           const img = document.createElement('img');
-          img.src = loadPathList[i];
+          img.src = imagePaths[i].bildpfad;
           img.alt = 'DEFAULT';
           box.prepend(img);
           i++;
