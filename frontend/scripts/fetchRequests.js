@@ -68,8 +68,9 @@ async function loadAllProductsInOverview(endpoint) {
 async function loadProductDetail() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
+    console.log("DIE ID IST VON DIESER SEITE: ", id);
     var apiFetch = apiMain + '/loadProduct/' + id.toString();
-
+    console.log("DER API FETCH: ", apiFetch);
     try {
         const response = await fetch(apiFetch);
         const data = await response.json();
@@ -80,12 +81,13 @@ async function loadProductDetail() {
         price.textContent = data.preis + '€';
         descr.textContent = data.beschreibung;
         //Call for Picture load
-        const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
-        console.log('Antwort von Detail Bild: ' + responsePictureData);
+        //const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
+        console.log('Antwort von Detail Bild: ' + data.bildpfad.bildpfad);
         const pictureDetail = document.querySelector('#pictureDetailSite');
-        pictureDetail.src = responsePictureData.bildpfad;
+        pictureDetail.src = data.bildpfad.bildpfad;
+        
         pictureDetail.alt = 'DEFAULT';
-        await loadVariants();
+        //await loadVariants();
     } catch (error) {
         console.log(error);
     }

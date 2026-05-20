@@ -27,13 +27,15 @@ class ProduktDao {
     }
 
     loadProductById(id) {
+        const produktBild = new ProduktbildDao(this._conn);
         var sql = 'SELECT * FROM Produkt WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
         if (helper.isUndefined(result))
             throw new Error('Keine Ressourceneintrag zur Produkt ID = ' + id + ' gefunden');
-
+        
+        result.bildpfad = produktBild.loadById(result.id);
         return result;
     }
 }
