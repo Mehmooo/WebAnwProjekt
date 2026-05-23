@@ -44,38 +44,39 @@
             <div>Summe</div>
             <div></div>
           </div>
-
+          <!--
           <div class="cart-row">
             <div class="cart-product">
-              <!--<img src="../images/mini_trex.png" alt="Mini T-Rex" />-->
-              <!--<span>Mini T-Rex</span>-->
+              Hier kommt ein img und ein span Tag rein
             </div>
             <div>Grau</div>
             <div>1</div>
-            <!--<div class="price">9,99 €</div>-->
+            <div class="price">9,99 €</div>
             <div class="price">9,99 €</div>
             <div class="sum"></div>
             <button class="cart-remove" >X</button>
           </div>
+        -->
 
+
+          <!--
           <div class="cart-row">
             <div class="cart-product">
-              <!--<img src="../images/boot_modell.png" alt="Boot Modell" />-->
-              <!--<span>Boot Modell</span>-->
+              Hier kommt ein img und ein span Tag rein
             </div>
-            <div>Grau</div>
-            <div>1</div>
-            <!--<div class="price">9,99 €</div>-->
-            <div class="price">9,99 €</div>
+            <div class="variant"></div>
+            <div class="amountCart"></div>
+            <div class="price"></div>
             <div class="sum"></div>
             <button class="cart-remove" >X</button>
           </div>
+          -->
         </div>
 
         <div class="cart-summary">
-          <p>Zwischensumme: <strong>19,98 €</strong></p>
-          <p>enth. MwSt.: <strong>3,19 €</strong></p>
-          <p class="cart-total">Bestellsumme: <strong>19,98 €</strong></p>
+          <p id="subtotal">Zwischensumme: </p>
+          <p id="tax">enth. MwSt.: </p>
+          <p class="cart-total" id="total">Bestellsumme: </p>
         </div>
 
         <div class="cart-buttons">
@@ -108,84 +109,152 @@
     </footer>
     
     <script>
-      var idProducts = [8,9];
-      var rows = document.querySelectorAll('.cart-product');
-      console.log("Die Reihen für Produkte: ", rows);
-      var i = 0;
-      document.addEventListener('DOMContentLoaded', async () => {
-          for (const row of rows) {
-            console.log('FÜR DEN WARENKORB VOR FETCH');
-            console.log("Cart for loop ", i);
-            const response = await fetch(`http://localhost:8000/api/loadProduct/${idProducts[i].toString()}`);
-            const data = await response.json();
-            //const response2 = await fetch(`http://localhost:8000/api/loadPicture/${data[i].id.toString()}`);
-            //const data2 = await response.json();
-
-            const descr = data.bezeichnung;
-            const unitPrice = data.preis;
-            const picture = data.bildpfad.bildpfad;
-
-            //var parent = document.querySelector('.cart-product');
-            var img = document.createElement('img');
-            img.src = picture;
-            img.alt = 'DEFAULT';
-            var span = document.createElement('span');
-            span.innerText = descr;
-
-            row.appendChild(img);
-            row.appendChild(span);
-            i++;
-          }
-
-
-
-
-
-          //console.log('FÜR DEN WARENKORB VOR FETCH');
-          //console.log("Cart for loop ", i);
-          //const response = await fetch(`http://localhost:8000/api/loadProduct/${idProducts[i].toString()}`);
-          //const data = await response.json();
-          ////const response2 = await fetch(`http://localhost:8000/api/loadPicture/${data[i].id.toString()}`);
-          ////const data2 = await response.json();
-//
-          //const descr = data.bezeichnung;
-          //const unitPrice = data.preis;
-          //const picture = data.bildpfad.bildpfad;
-//
-          //var parent = document.querySelector('.cart-product');
-          //var img = document.createElement('img');
-          //img.src = picture;
-          //img.alt = 'DEFAULT';
-          //var span = document.createElement('span');
-          //span.innerText = descr;
-//
-          //parent.appendChild(img);
-          //parent.appendChild(span);
-//
-//
-//
-
-
-        
-      });
-
-
-
-
-
-      buttons = document.querySelectorAll('.cart-remove');
-      console.log("Das Cart Remove Button Element: ", buttons);
-      buttons.forEach((button) => {
-        button.addEventListener('click', (event) => {
-          const parent = event.target.parentElement;
-          parent.remove();
-        });
-      });
-      console.log('Vor der DomContentLoaded')
+      //var idProducts = [8,9];
+      //var rows = document.querySelectorAll('.cart-product');
+      //console.log("Die Reihen für Produkte: ", rows);
+      //var i = 0;
 
       
 
-      console.log('Nach dem DomContentLoaded');
+      function renderUntereKachel(finalTotSum) {
+        var totalSumArea = document.querySelector('#total');
+        var taxArea = document.querySelector('#tax');
+        var subtotalArea = document.querySelector('#subtotal');
+
+        var subtotal = finalTotSum*0.81;
+        var tax = finalTotSum*0.19;
+        
+        strongSubTotal.innerText = (subtotal.toFixed(2)).toString() + '€';
+        strongTax.innerText = (tax.toFixed(2)).toString() + '€';
+        strongTotal.innerText = (finalTotSum.toFixed(2)).toString() + '€';
+        subtotalArea.appendChild(strongSubTotal);
+        taxArea.appendChild(strongTax);
+        totalSumArea.appendChild(strongTotal);
+      }
+
+
+
+
+
+      var finalTotSum = 0.0;
+      document.addEventListener('DOMContentLoaded', async () => {
+          
+          var parseSession = JSON.parse(sessionStorage.getItem('cart'));
+          console.log("Die Länge von SessionStorage: ", parseSession.length);
+          console.log("Der Inhalt von SessionStorage: ", parseSession);
+          for (let i = 0; i<parseSession.length; i++) {
+            const cartSession = parseSession;
+            var stringPrice = cartSession[i].unitPrice;
+            var floatPrice = parseFloat(stringPrice);
+
+            var stringAmount = cartSession[i].amount;
+            var floatAmount = parseFloat(stringAmount);
+
+            var totSum = floatPrice*floatAmount;
+            finalTotSum = finalTotSum + totSum;
+            var stringTotSum = totSum.toString();
+            stringTotSum = stringTotSum + '€';
+            
+            // Build Elements dynamically
+            var grandParent = document.querySelector('.cart-table');
+            var parentTag = document.createElement('div');
+            parentTag.classList.add('cart-row');
+
+            var imgSpanDiv = document.createElement('div');
+            imgSpanDiv.classList.add('cart-product');
+
+            var amountTag = document.createElement('div');
+            amountTag.classList.add('amountCart');
+
+            var variantTag = document.createElement('div');
+            variantTag.classList.add('variant');
+
+            var unitPriceTag = document.createElement('div');
+            unitPriceTag.classList.add('price');
+
+            var titleTag = document.createElement('span');
+            titleTag.classList.add('title');
+
+            var imgTag = document.createElement('img');
+            imgTag.classList.add('productImage');
+
+            var sumTag = document.createElement('div');
+            sumTag.classList.add('sum');
+
+            var buttonTag = document.createElement('button');
+            buttonTag.classList.add('cart-remove');
+            buttonTag.innerText = 'X';
+
+            let newStringPrice = stringPrice.replace('.', ',');
+            let stringSum = totSum.toString();
+            let newStringSum = stringSum.replace('.', ',');
+
+            amountTag.innerText = cartSession[i].amount;
+            variantTag.innerText = cartSession[i].variant;
+            unitPriceTag.innerText = newStringPrice;
+            titleTag.innerText = cartSession[i].title;
+            imgTag.src = cartSession[i].imgSrc;
+            sumTag.innerText = newStringSum;
+
+            grandParent.appendChild(parentTag);
+            parentTag.appendChild(imgSpanDiv);
+            imgSpanDiv.appendChild(imgTag);
+            imgSpanDiv.appendChild(titleTag);
+            parentTag.appendChild(variantTag);
+            parentTag.appendChild(amountTag);
+            parentTag.appendChild(unitPriceTag);
+            parentTag.appendChild(sumTag);
+            parentTag.appendChild(buttonTag);
+          }
+
+          
+
+          buttons = document.querySelectorAll('.cart-remove');
+          console.log("Das Cart Remove Button Element: ", buttons);
+          buttons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+              const productRow = event.target.closest('.cart-row');
+              const variantInRow = productRow.querySelector('.variant').innerText;
+              const identifyProduct = productRow.querySelector('.cart-product');
+              const titleInRow = identifyProduct.querySelector('.title').innerText;
+
+              for (let i = 0; i<parseSession.length; i++) {
+                if ((parseSession[i].variant == variantInRow) && (parseSession[i].title == titleInRow)) {
+                  parseSession.splice(i,1);
+
+                  sessionStorage.setItem('cart', JSON.stringify(parseSession));
+                  const parent = event.target.parentElement;
+                  parent.remove()
+                }
+              }
+              window.location.reload();
+            });
+          });
+          var totalSumArea = document.querySelector('#total');
+          var taxArea = document.querySelector('#tax');
+          var subtotalArea = document.querySelector('#subtotal');
+
+          var strongSubTotal = document.createElement('strong');
+          var strongTax = document.createElement('strong');
+          var strongTotal = document.createElement('strong')
+
+          var subtotal = finalTotSum*0.81;
+          var tax = finalTotSum*0.19;
+          
+
+          strongSubTotal.innerText = ((subtotal.toFixed(2)).toString() + '€').replace('.', ',');
+          strongTax.innerText = ((tax.toFixed(2)).toString() + '€').replace('.', ',');
+          strongTotal.innerText = ((finalTotSum.toFixed(2)).toString() + '€').replace('.', ',');
+
+          subtotalArea.appendChild(strongSubTotal);
+          taxArea.appendChild(strongTax);
+          totalSumArea.appendChild(strongTotal);
+
+
+          console.log('DIE ENDLICHE SUMME IST: ', finalTotSum);
+
+      });
+
     </script>
   </body>
 </html>
