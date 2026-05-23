@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/headerfooter.css" />
     <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
     <script src="/fetchRequests.js"></script>
+    <script src="/sessionManager.js"></script>
   </head>
   <body class="product_detail_view">
     <header class="header">
@@ -33,7 +34,7 @@
       <div class="page-container main-box">
         <div class="product_detail_grid">
           <div class="picture_area_grid">
-            <img id='pictureDetailSite' />
+            <img id='pictureDetailSite'>
           </div>
           <div class="product_text_area_grid">
             <div class="product_detail_title">
@@ -42,10 +43,10 @@
             <div class="product_detail_information">
               <p id="productPrice"></p>
               <div class="product_detail_button_group">
-                <button id="variant1">Schwarz</button>
-                <button id="variant2">Gelb</button>
-                <button id="variant3">Orange</button>
-                <button id="variant4">Blau</button>
+                <button id="variant">Schwarz</button>
+                <button id="variant">Gelb</button>
+                <button id="variant">Orange</button>
+                <button id="variant">Blau</button>
               </div>
               <div class="product_detail_amount_input">
                 <p><strong>Anzahl:</strong></p>
@@ -54,7 +55,7 @@
                 <button class="increment_button" onclick="increment()">+</button>
               </div>
               <div class="product_detail_add_cart">
-                <a href="cart.html">
+                <a>
                   <button id="add-cart">In den Warenkorb legen</button>
                 </a>
               </div>
@@ -101,6 +102,47 @@
           inputField.value = i;
         }
       }
+      
+      
+      var addCartButton = document.querySelector('#add-cart');
+      console.log("QUERY SELECTOR: ", addCartButton);
+
+      // If Client click on addCart Button
+      addCartButton.addEventListener('click', () => {
+        var unitPrice = document.querySelector('#productPrice').innerText;
+        var title = document.querySelector('#productTitle').innerText;
+        var img = document.querySelector('#pictureDetailSite').src
+        // If Client did not selected a Color
+        if (selectedColor == null) {
+          alert('Variante muss ausgewählt werden');
+          console.log("Es wurde ein Alert aufgerufen");
+          return;
+        }
+        // If Client to click fast on addCart Button, while Image not loaded
+        if (img == null) {
+          alert('Bild wurde noch nicht richtig geladen');
+          console.log("Es wurde ein Alert aufgerufen");
+          return;
+        }
+    
+        addToCart(inputField.value, selectedColor, unitPrice, title, img);
+        
+      });
+      var selectedButton = null;
+      var selectedColor = null;
+      const colorButtons = document.querySelectorAll('#variant');
+
+      colorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // The previous Button set to default background Color
+          if (selectedButton != null) {
+            selectedButton.style.backgroundColor = "white";
+          }
+          selectedButton = button;
+          selectedColor = button.innerText; //State for which variant was selected
+          button.style.backgroundColor = "grey";
+        });
+      });
     </script>
   </body>
 </html>
