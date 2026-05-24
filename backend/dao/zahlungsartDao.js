@@ -20,6 +20,18 @@ class ZahlungsartDao {
 
         return result;
     }
+
+    loadById(id) {
+        var sql = 'SELECT * FROM Zahlungsart WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) {
+            throw new Error('No Record by id=' + id);
+        }
+
+        return result;
+    }
 }
 
 module.exports = ZahlungsartDao;
