@@ -94,3 +94,11 @@ async function loadProductDetail() {
     console.log("DETAILSEITE FERTIG GELADEN");
     
 }
+
+async function loadAllPaymentMethods(endpoint) {
+    const apiFetch = apiMain + endpoint;
+    const response = await fetch(apiFetch);
+    const data = await response.json();
+    return data;
+
+}
