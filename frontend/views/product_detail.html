@@ -4,28 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produkt Detail</title>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/headerfooter.css" />
-    <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
-    <script src="/fetchRequests.js"></script>
-    <script src="/sessionManager.js"></script>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/headerfooter.css" />
+    <link
+      rel="shortcut icon"
+      href="/images/4Dudes-Photoroom.png"
+      type="image/x-icon"
+    />
+    <script src="/scripts/fetchRequests.js"></script>
+    <script src="/scripts/sessionManager.js"></script>
   </head>
   <body class="product_detail_view">
     <header class="header">
       <div class="Logo">
-        <a href="index.html">
+        <a href="/index.html">
           <img src="/images/4Dudes-Photoroom.png" alt="Logo" sizes="50" />
           <h1>4Dudes</h1>
         </a>
       </div>
       <div class="nav">
-        <a href="../auth/login.html">
+        <a href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
-        <a href="account.html">
+        <a href="/views/account.html">
           <input type="button" value="ACCOUNT" class="but" />
         </a>
-        <a href="cart.html">
+        <a href="/views/cart.html">
           <input type="button" value="EINKAUFSWAGEN" class="but" />
         </a>
       </div>
@@ -34,7 +38,7 @@
       <div class="page-container main-box">
         <div class="product_detail_grid">
           <div class="picture_area_grid">
-            <img id='pictureDetailSite'>
+            <img id="pictureDetailSite" />
           </div>
           <div class="product_text_area_grid">
             <div class="product_detail_title">
@@ -50,9 +54,13 @@
               </div>
               <div class="product_detail_amount_input">
                 <p><strong>Anzahl:</strong></p>
-                <button class="decrement_button" onclick="decrement()">-</button>
+                <button class="decrement_button" onclick="decrement()">
+                  -
+                </button>
                 <input class="amount_input" type="text" value="1" />
-                <button class="increment_button" onclick="increment()">+</button>
+                <button class="increment_button" onclick="increment()">
+                  +
+                </button>
               </div>
               <div class="product_detail_add_cart">
                 <a>
@@ -65,22 +73,25 @@
       </div>
       <div class="page-container main-box">
         <div class="product_detail_short_descr">
-          <p id="productDescr">
-            <strong>Beschreibung:</strong><br />
-          </p>
+          <p id="productDescr"><strong>Beschreibung:</strong><br /></p>
         </div>
       </div>
     </main>
 
     <footer class="footer">
       <div class="items3">
-        <img class="left" src="/images/4Dudes-Photoroom.png" alt="Logo" sizes="50" />
+        <img
+          class="left"
+          src="/images/4Dudes-Photoroom.png"
+          alt="Logo"
+          sizes="50"
+        />
       </div>
       <div class="items3">
         <p class="center">
-          <a href="imprint.html"> Impressum </a>
-          <a href="agb.html"> AGB's </a>
-          <a href="datenschutz.html"> Datenschutz </a>
+          <a href="/views/imprint.html"> Impressum </a>
+          <a href="/views/agb.html"> AGB's </a>
+          <a href="/views/datenschutz.html"> Datenschutz </a>
         </p>
       </div>
       <div class="items3">
@@ -88,8 +99,8 @@
       </div>
     </footer>
     <script>
-      document.addEventListener('DOMContentLoaded', loadProductDetail);
-      var inputField = document.querySelector('.amount_input');
+      document.addEventListener("DOMContentLoaded", loadProductDetail);
+      var inputField = document.querySelector(".amount_input");
       var i = 1;
       function increment() {
         i++;
@@ -102,38 +113,36 @@
           inputField.value = i;
         }
       }
-      
-      
-      var addCartButton = document.querySelector('#add-cart');
+
+      var addCartButton = document.querySelector("#add-cart");
       console.log("QUERY SELECTOR: ", addCartButton);
 
       // If Client click on addCart Button
-      addCartButton.addEventListener('click', () => {
-        var unitPrice = document.querySelector('#productPrice').innerText;
-        var title = document.querySelector('#productTitle').innerText;
-        var img = document.querySelector('#pictureDetailSite').src
+      addCartButton.addEventListener("click", () => {
+        var unitPrice = document.querySelector("#productPrice").innerText;
+        var title = document.querySelector("#productTitle").innerText;
+        var img = document.querySelector("#pictureDetailSite").src;
         // If Client did not selected a Color
         if (selectedColor == null) {
-          alert('Variante muss ausgewählt werden');
+          alert("Variante muss ausgewählt werden");
           console.log("Es wurde ein Alert aufgerufen");
           return;
         }
         // If Client to click fast on addCart Button, while Image not loaded
         if (img == null) {
-          alert('Bild wurde noch nicht richtig geladen');
+          alert("Bild wurde noch nicht richtig geladen");
           console.log("Es wurde ein Alert aufgerufen");
           return;
         }
-    
+
         addToCart(inputField.value, selectedColor, unitPrice, title, img);
-        
       });
       var selectedButton = null;
       var selectedColor = null;
-      const colorButtons = document.querySelectorAll('#variant');
+      const colorButtons = document.querySelectorAll("#variant");
 
-      colorButtons.forEach(button => {
-        button.addEventListener('click', () => {
+      colorButtons.forEach((button) => {
+        button.addEventListener("click", () => {
           // The previous Button set to default background Color
           if (selectedButton != null) {
             selectedButton.style.backgroundColor = "white";

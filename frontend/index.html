@@ -4,29 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Startseite</title>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/headerfooter.css" />
-    <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
-    <script src="../scripts/fetchRequests.js"></script>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/headerfooter.css" />
+    <link
+      rel="shortcut icon"
+      href="images/4Dudes-Photoroom.png"
+      type="image/x-icon"
+    />
+    <script src="/scripts/fetchRequests.js"></script>
   </head>
 
   <body class="dashboard-page">
     <header class="header">
       <div class="Logo">
-        <a href="index.html">
+        <a href="/index.html">
           <img src="/images/4Dudes-Photoroom.png" alt="Logo" />
           <h1>4Dudes</h1>
         </a>
       </div>
 
       <div class="nav">
-        <a href="../auth/login.html">
+        <a href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
-        <a href="account.html">
+        <a href="/views/account.html">
           <input type="button" value="ACCOUNT" class="but" />
         </a>
-        <a href="cart.html">
+        <a href="/views/cart.html">
           <input type="button" value="EINKAUFSWAGEN" class="but" />
         </a>
       </div>
@@ -40,7 +44,9 @@
             In unserem Webshop finden Sie 3D-gedruckte Modelle, Dekofiguren und
             praktische Produkte für Zuhause, Schreibtisch und Sammlung.
           </p>
-          <a href="products_overview.html" class="shop-button">Zum Shop</a>
+          <a href="/views/products_overview.html" class="shop-button"
+            >Zum Shop</a
+          >
         </section>
 
         <section class="inner-box start-info">
@@ -86,9 +92,9 @@
 
       <div class="items3">
         <p class="center">
-          <a href="imprint.html">Impressum</a>
-          <a href="agb.html">AGB's</a>
-          <a href="datenschutz.html">Datenschutz</a>
+          <a href="/views/imprint.html">Impressum</a>
+          <a href="/views/agb.html">AGB's</a>
+          <a href="/views/datenschutz.html">Datenschutz</a>
         </p>
       </div>
 
@@ -97,35 +103,32 @@
       </div>
     </footer>
 
-    <script src="/fetchRequests.js"></script>
-    
+    <script src="/scripts/fetchRequests.js"></script>
+
     <script>
-      document.addEventListener('DOMContentLoaded', loadHomepage);
+      document.addEventListener("DOMContentLoaded", loadHomepage);
 
       async function loadHomepage() {
         const cart = [];
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-        const fullContainer = document.querySelector('.start-cards');
-        
-        let imagePaths = await loadPicturesHomepage('/loadPictureHomepage');
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        const fullContainer = document.querySelector(".start-cards");
+
+        let imagePaths = await loadPicturesHomepage("/loadPictureHomepage");
         console.log("Nach Fetch Rückkehr: ", imagePaths);
-        for (let i = 0; i<imagePaths.length; i++) {
+        for (let i = 0; i < imagePaths.length; i++) {
           let loadPath = imagePaths.bildpfad;
         }
-          
-        
+
         var i = 0; //Iterator for take action in the pathList
         // This loop create all img Tags with the Path Attribute
         for (let box of fullContainer.children) {
-          const img = document.createElement('img');
+          const img = document.createElement("img");
           img.src = imagePaths[i].bildpfad;
-          img.alt = 'DEFAULT';
+          img.alt = "DEFAULT";
           box.prepend(img);
           i++;
         }
-
       }
     </script>
-  
   </body>
 </html>
