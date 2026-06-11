@@ -116,7 +116,7 @@
         let imagePaths = await loadPicturesHomepage("/loadPictureHomepage");
         console.log("Nach Fetch Rückkehr: ", imagePaths);
         for (let i = 0; i < imagePaths.length; i++) {
-          let loadPath = imagePaths.bildpfad;
+          let loadPath = imagePaths[i].bildpfad;
         }
 
         var i = 0; //Iterator for take action in the pathList

@@ -42,8 +42,9 @@ try {
   app.locals.dbConnection = dbConnection;
 
   console.log("Binding middleware...");
-  // setting folder for static files like images, pdfs aso
-  app.use(express.static(__dirname + "/public"));
+  // setting folder for static files like images, pdfs etc.
+  // __dirname is already the backend directory, use path.join to form the correct path
+  app.use(express.static(path.join(__dirname, "public")));
   console.log(__dirname);
   //app.use(express.static(path.join(__dirname, '../frontend/views')));
   //app.use(express.static(path.join(__dirname, '../frontend/style')));
