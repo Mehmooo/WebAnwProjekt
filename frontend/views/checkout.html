@@ -78,12 +78,12 @@
 
           <div class="checkout-agb">
             <label>
-              <input type="checkbox" required />
+              <input type="checkbox" id="agb" required />
               Ich akzeptiere die AGB.
             </label>
           </div>
 
-          <a href="success.html">
+          <a>
             <button class="checkout-button">
               Bestellung abschließen & zahlen
             </button>
@@ -117,8 +117,10 @@
         var parent = document.querySelector('.input-field');
         for (let i = 0; i<callApi.length; i++) {
           let optionTag = document.createElement('option');
+          //optionTag.classList.add(`${callApi[i].bezeichnung}`);
           optionTag.innerText = callApi[i].bezeichnung;
           parent.appendChild(optionTag);
+          optionTag.classList.add(`${callApi[i].id}`);
         }
 
         console.log("Fertig mit dem Laden von Zahlungsarten");
@@ -205,6 +207,30 @@
 
 
       });
+
+      var closeOrderButton = document.querySelector('.checkout-button');
+      closeOrderButton.addEventListener('click', async () => {
+        let parseSession = JSON.parse(sessionStorage.getItem('cart'));
+        let checkedBox = document.getElementById('agb').checked // Boolean Value
+        let selectedPaymentMethod = document.querySelector('.input-field');
+
+        if (!checkedBox) {
+          alert("Akzeptieren Sie die AGB's");
+          return;
+        }
+
+        if (selectedPaymentMethod.value == null) {
+          alert("Wählen Sie eine Zahlungsmethode aus");
+          return;
+        }
+
+        var paymentMethodId = selectedPaymentMethod.value;
+        var infoAbschluss = await closeOrder('/newOrder', paymentMethodId, parseSession);
+        console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
+
+        
+
+      })
     </script>
   </body>
 </html>
