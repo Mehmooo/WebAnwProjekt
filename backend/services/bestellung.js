@@ -50,7 +50,7 @@ serviceRouter.post('/newOrder', function(request, response) {
 
     const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
     try {
-        var obj = bestellungDao.create(request.body.bestellzeitpunkt, request.body.besteller, request.body.zahlungsart.id, request.body.bestellpositionen);
+        var obj = bestellungDao.create(request.body.bestellzeitpunkt, request.body.besteller.id, request.body.zahlungsart.id, request.body.bestellpositionen);
         console.log('Service Bestellung: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {
