@@ -15,7 +15,7 @@ function addToCart(amount, variant, unitPrice, productTitle, imgSrc) {
             let newAmount = intNum + parseInt(amount);
             parseSession[i].amount = newAmount;
             sessionStorage.setItem('cart', JSON.stringify(parseSession))
-            window.location.href = "/cart.html";
+            window.location.href = "/views/cart.html";
             return;
 
         } 
@@ -27,6 +27,6 @@ function addToCart(amount, variant, unitPrice, productTitle, imgSrc) {
     cart.push({productId: id, amount: amount, variant: variant, unitPrice: unitPrice, title: productTitle, imgSrc: imgSrc});
     sessionStorage.setItem('cart', JSON.stringify(cart));
     console.log("VOR DEM WEITERLEITEN:");
-    window.location.href = "/cart.html";
+    window.location.href = "/views/cart.html";
 
 }

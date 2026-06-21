@@ -42,7 +42,7 @@ async function loadAllProductsInOverview(endpoint) {
                 a.classList.add('product-card');
                 a.href = `product_detail.html?id=${data[i].id}`;
                 div.classList.add('products_square');
-                img.src = data[i].bildpfad.bildpfad;
+                img.src = "http://localhost:8000" + data[i].bildpfad.bildpfad;
                 console.log("Bildpfad ", data[i].bildpfad.bildpfad);
                 img.alt = 'DEFAULT';
                 p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis} €`;
@@ -84,7 +84,7 @@ async function loadProductDetail() {
         //const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
         console.log('Antwort von Detail Bild: ' + data.bildpfad.bildpfad);
         const pictureDetail = document.querySelector('#pictureDetailSite');
-        pictureDetail.src = data.bildpfad.bildpfad;
+        pictureDetail.src = "http://localhost:8000" + data.bildpfad.bildpfad;
         
         pictureDetail.alt = 'DEFAULT';
         //await loadVariants();

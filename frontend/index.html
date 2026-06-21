@@ -123,7 +123,8 @@
         // This loop create all img Tags with the Path Attribute
         for (let box of fullContainer.children) {
           const img = document.createElement("img");
-          img.src = imagePaths[i].bildpfad;
+          img.src = "http://localhost:8000" + imagePaths[i].bildpfad;
+          console.log("Das ist der Pfad: ", img.src);
           img.alt = "DEFAULT";
           box.prepend(img);
           i++;
