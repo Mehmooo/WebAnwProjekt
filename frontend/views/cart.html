@@ -4,28 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Warenkorb Übersicht</title>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/headerfooter.css" />
-    <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/headerfooter.css" />
+    <link
+      rel="shortcut icon"
+      href="/images/4Dudes-Photoroom.png"
+      type="image/x-icon"
+    />
   </head>
 
   <body class="dashboard-page">
     <header class="header">
       <div class="Logo">
-        <a href="index.html">
+        <a href="/index.html">
           <img src="/images/4Dudes-Photoroom.png" alt="Logo" />
           <h1>4Dudes</h1>
         </a>
       </div>
 
       <div class="nav">
-        <a href="../auth/login.html">
+        <a href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
-        <a href="account.html">
+        <a href="/views/account.html">
           <input type="button" value="ACCOUNT" class="but" />
         </a>
-        <a href="cart.html">
+        <a href="/views/cart.html">
           <input type="button" value="EINKAUFSWAGEN" class="but" />
         </a>
       </div>
@@ -58,7 +62,6 @@
           </div>
         -->
 
-
           <!--
           <div class="cart-row">
             <div class="cart-product">
@@ -74,16 +77,16 @@
         </div>
 
         <div class="cart-summary">
-          <p id="subtotal">Zwischensumme: </p>
-          <p id="tax">enth. MwSt.: </p>
-          <p class="cart-total" id="total">Bestellsumme: </p>
+          <p id="subtotal">Zwischensumme:</p>
+          <p id="tax">enth. MwSt.:</p>
+          <p class="cart-total" id="total">Bestellsumme:</p>
         </div>
 
         <div class="cart-buttons">
-          <a href="products_overview.html" class="cart-action-button">
+          <a href="/views/products_overview.html" class="cart-action-button">
             Weiter shoppen
           </a>
-          <a href="checkout.html" class="cart-action-button">
+          <a href="/views/checkout.html" class="cart-action-button">
             Zum Checkout
           </a>
         </div>
@@ -97,9 +100,9 @@
 
       <div class="items3">
         <p class="center">
-          <a href="imprint.html">Impressum</a>
-          <a href="agb.html">AGB's</a>
-          <a href="datenschutz.html">Datenschutz</a>
+          <a href="/views/imprint.html">Impressum</a>
+          <a href="/views/agb.html">AGB's</a>
+          <a href="/views/datenschutz.html">Datenschutz</a>
         </p>
       </div>
 
@@ -107,154 +110,152 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
-    
+
     <script>
       //var idProducts = [8,9];
       //var rows = document.querySelectorAll('.cart-product');
       //console.log("Die Reihen für Produkte: ", rows);
       //var i = 0;
 
-      
-
       function renderUntereKachel(finalTotSum) {
-        var totalSumArea = document.querySelector('#total');
-        var taxArea = document.querySelector('#tax');
-        var subtotalArea = document.querySelector('#subtotal');
+        var totalSumArea = document.querySelector("#total");
+        var taxArea = document.querySelector("#tax");
+        var subtotalArea = document.querySelector("#subtotal");
 
-        var subtotal = finalTotSum*0.81;
-        var tax = finalTotSum*0.19;
-        
-        strongSubTotal.innerText = (subtotal.toFixed(2)).toString() + '€';
-        strongTax.innerText = (tax.toFixed(2)).toString() + '€';
-        strongTotal.innerText = (finalTotSum.toFixed(2)).toString() + '€';
+        var subtotal = finalTotSum * 0.81;
+        var tax = finalTotSum * 0.19;
+
+        strongSubTotal.innerText = subtotal.toFixed(2).toString() + "€";
+        strongTax.innerText = tax.toFixed(2).toString() + "€";
+        strongTotal.innerText = finalTotSum.toFixed(2).toString() + "€";
         subtotalArea.appendChild(strongSubTotal);
         taxArea.appendChild(strongTax);
         totalSumArea.appendChild(strongTotal);
       }
 
-
-
-
-
       var finalTotSum = 0.0;
-      document.addEventListener('DOMContentLoaded', async () => {
-          
-          var parseSession = JSON.parse(sessionStorage.getItem('cart'));
-          console.log("Die Länge von SessionStorage: ", parseSession.length);
-          console.log("Der Inhalt von SessionStorage: ", parseSession);
-          for (let i = 0; i<parseSession.length; i++) {
-            const cartSession = parseSession;
-            var stringPrice = cartSession[i].unitPrice;
-            var floatPrice = parseFloat(stringPrice);
+      document.addEventListener("DOMContentLoaded", async () => {
+        var parseSession = JSON.parse(sessionStorage.getItem("cart"));
+        console.log("Die Länge von SessionStorage: ", parseSession.length);
+        console.log("Der Inhalt von SessionStorage: ", parseSession);
+        for (let i = 0; i < parseSession.length; i++) {
+          const cartSession = parseSession;
+          var stringPrice = cartSession[i].unitPrice;
+          var floatPrice = parseFloat(stringPrice);
 
-            var stringAmount = cartSession[i].amount;
-            var floatAmount = parseFloat(stringAmount);
+          var stringAmount = cartSession[i].amount;
+          var floatAmount = parseFloat(stringAmount);
 
-            var totSum = floatPrice*floatAmount;
-            finalTotSum = finalTotSum + totSum;
-            var stringTotSum = totSum.toString();
-            stringTotSum = stringTotSum + '€';
-            
-            // Build Elements dynamically
-            var grandParent = document.querySelector('.cart-table');
-            var parentTag = document.createElement('div');
-            parentTag.classList.add('cart-row');
+          var totSum = floatPrice * floatAmount;
+          finalTotSum = finalTotSum + totSum;
+          var stringTotSum = totSum.toString();
+          stringTotSum = stringTotSum + "€";
 
-            var imgSpanDiv = document.createElement('div');
-            imgSpanDiv.classList.add('cart-product');
+          // Build Elements dynamically
+          var grandParent = document.querySelector(".cart-table");
+          var parentTag = document.createElement("div");
+          parentTag.classList.add("cart-row");
 
-            var amountTag = document.createElement('div');
-            amountTag.classList.add('amountCart');
+          var imgSpanDiv = document.createElement("div");
+          imgSpanDiv.classList.add("cart-product");
 
-            var variantTag = document.createElement('div');
-            variantTag.classList.add('variant');
+          var amountTag = document.createElement("div");
+          amountTag.classList.add("amountCart");
 
-            var unitPriceTag = document.createElement('div');
-            unitPriceTag.classList.add('price');
+          var variantTag = document.createElement("div");
+          variantTag.classList.add("variant");
 
-            var titleTag = document.createElement('span');
-            titleTag.classList.add('title');
+          var unitPriceTag = document.createElement("div");
+          unitPriceTag.classList.add("price");
 
-            var imgTag = document.createElement('img');
-            imgTag.classList.add('productImage');
+          var titleTag = document.createElement("span");
+          titleTag.classList.add("title");
 
-            var sumTag = document.createElement('div');
-            sumTag.classList.add('sum');
+          var imgTag = document.createElement("img");
+          imgTag.classList.add("productImage");
 
-            var buttonTag = document.createElement('button');
-            buttonTag.classList.add('cart-remove');
-            buttonTag.innerText = 'X';
+          var sumTag = document.createElement("div");
+          sumTag.classList.add("sum");
 
-            let newStringPrice = stringPrice.replace('.', ',');
-            let stringSum = totSum.toString();
-            let newStringSum = stringSum.replace('.', ',');
+          var buttonTag = document.createElement("button");
+          buttonTag.classList.add("cart-remove");
+          buttonTag.innerText = "X";
 
-            amountTag.innerText = cartSession[i].amount;
-            variantTag.innerText = cartSession[i].variant;
-            unitPriceTag.innerText = newStringPrice;
-            titleTag.innerText = cartSession[i].title;
-            imgTag.src = cartSession[i].imgSrc;
-            sumTag.innerText = newStringSum;
+          let newStringPrice = stringPrice.replace(".", ",");
+          let stringSum = totSum.toString();
+          let newStringSum = stringSum.replace(".", ",");
 
-            grandParent.appendChild(parentTag);
-            parentTag.appendChild(imgSpanDiv);
-            imgSpanDiv.appendChild(imgTag);
-            imgSpanDiv.appendChild(titleTag);
-            parentTag.appendChild(variantTag);
-            parentTag.appendChild(amountTag);
-            parentTag.appendChild(unitPriceTag);
-            parentTag.appendChild(sumTag);
-            parentTag.appendChild(buttonTag);
-          }
+          amountTag.innerText = cartSession[i].amount;
+          variantTag.innerText = cartSession[i].variant;
+          unitPriceTag.innerText = newStringPrice;
+          titleTag.innerText = cartSession[i].title;
+          imgTag.src = cartSession[i].imgSrc;
+          sumTag.innerText = newStringSum;
 
-          
+          grandParent.appendChild(parentTag);
+          parentTag.appendChild(imgSpanDiv);
+          imgSpanDiv.appendChild(imgTag);
+          imgSpanDiv.appendChild(titleTag);
+          parentTag.appendChild(variantTag);
+          parentTag.appendChild(amountTag);
+          parentTag.appendChild(unitPriceTag);
+          parentTag.appendChild(sumTag);
+          parentTag.appendChild(buttonTag);
+        }
 
-          buttons = document.querySelectorAll('.cart-remove');
-          console.log("Das Cart Remove Button Element: ", buttons);
-          buttons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-              const productRow = event.target.closest('.cart-row');
-              const variantInRow = productRow.querySelector('.variant').innerText;
-              const identifyProduct = productRow.querySelector('.cart-product');
-              const titleInRow = identifyProduct.querySelector('.title').innerText;
+        buttons = document.querySelectorAll(".cart-remove");
+        console.log("Das Cart Remove Button Element: ", buttons);
+        buttons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const productRow = event.target.closest(".cart-row");
+            const variantInRow = productRow.querySelector(".variant").innerText;
+            const identifyProduct = productRow.querySelector(".cart-product");
+            const titleInRow =
+              identifyProduct.querySelector(".title").innerText;
 
-              for (let i = 0; i<parseSession.length; i++) {
-                if ((parseSession[i].variant == variantInRow) && (parseSession[i].title == titleInRow)) {
-                  parseSession.splice(i,1);
+            for (let i = 0; i < parseSession.length; i++) {
+              if (
+                parseSession[i].variant == variantInRow &&
+                parseSession[i].title == titleInRow
+              ) {
+                parseSession.splice(i, 1);
 
-                  sessionStorage.setItem('cart', JSON.stringify(parseSession));
-                  const parent = event.target.parentElement;
-                  parent.remove()
-                }
+                sessionStorage.setItem("cart", JSON.stringify(parseSession));
+                const parent = event.target.parentElement;
+                parent.remove();
               }
-              window.location.reload();
-            });
+            }
+            window.location.reload();
           });
-          var totalSumArea = document.querySelector('#total');
-          var taxArea = document.querySelector('#tax');
-          var subtotalArea = document.querySelector('#subtotal');
+        });
+        var totalSumArea = document.querySelector("#total");
+        var taxArea = document.querySelector("#tax");
+        var subtotalArea = document.querySelector("#subtotal");
 
-          var strongSubTotal = document.createElement('strong');
-          var strongTax = document.createElement('strong');
-          var strongTotal = document.createElement('strong')
+        var strongSubTotal = document.createElement("strong");
+        var strongTax = document.createElement("strong");
+        var strongTotal = document.createElement("strong");
 
-          var subtotal = finalTotSum*0.81;
-          var tax = finalTotSum*0.19;
-          
+        var subtotal = finalTotSum * 0.81;
+        var tax = finalTotSum * 0.19;
 
-          strongSubTotal.innerText = ((subtotal.toFixed(2)).toString() + '€').replace('.', ',');
-          strongTax.innerText = ((tax.toFixed(2)).toString() + '€').replace('.', ',');
-          strongTotal.innerText = ((finalTotSum.toFixed(2)).toString() + '€').replace('.', ',');
+        strongSubTotal.innerText = (
+          subtotal.toFixed(2).toString() + "€"
+        ).replace(".", ",");
+        strongTax.innerText = (tax.toFixed(2).toString() + "€").replace(
+          ".",
+          ",",
+        );
+        strongTotal.innerText = (
+          finalTotSum.toFixed(2).toString() + "€"
+        ).replace(".", ",");
 
-          subtotalArea.appendChild(strongSubTotal);
-          taxArea.appendChild(strongTax);
-          totalSumArea.appendChild(strongTotal);
+        subtotalArea.appendChild(strongSubTotal);
+        taxArea.appendChild(strongTax);
+        totalSumArea.appendChild(strongTotal);
 
-
-          console.log('DIE ENDLICHE SUMME IST: ', finalTotSum);
-
+        console.log("DIE ENDLICHE SUMME IST: ", finalTotSum);
       });
-
     </script>
   </body>
 </html>
