@@ -211,6 +211,10 @@
       var closeOrderButton = document.querySelector('.checkout-button');
       closeOrderButton.addEventListener('click', async () => {
         let parseSession = JSON.parse(sessionStorage.getItem('cart'));
+        console.log("Hier kommt die Antwort darunter ob geparsed wurde oder nicht");
+        console.log(Array.isArray(parseSession));
+        console.log("typeof parseSession: ", typeof parseSession);
+        console.log("Der Inhalt von parseSession: ", parseSession);
         let checkedBox = document.getElementById('agb').checked // Boolean Value
         let selectedPaymentMethod = document.querySelector('.input-field');
 
@@ -226,6 +230,7 @@
 
         var paymentMethodId = selectedPaymentMethod.value;
         var infoAbschluss = await closeOrder('/newOrder', paymentMethodId, parseSession);
+        window.location.href = "success.html";
         console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
 
         

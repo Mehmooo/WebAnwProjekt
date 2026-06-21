@@ -72,6 +72,7 @@ try {
     app.use(morgan('dev'));
 
     // binding endpoints
+    app.use(express.json());
     const TOPLEVELPATH = '/api';
     console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
     

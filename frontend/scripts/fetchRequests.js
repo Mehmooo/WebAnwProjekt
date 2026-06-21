@@ -105,6 +105,7 @@ async function loadAllPaymentMethods(endpoint) {
 
 async function closeOrder(endpoint, paymentId, session) {
     const apiFetch = apiMain + endpoint;
+    console.log("DER API FETCH: ", apiFetch);
     const response = await fetch(apiFetch, {
         method: 'POST',
         headers: {
@@ -117,7 +118,7 @@ async function closeOrder(endpoint, paymentId, session) {
             'zahlungsart': {
                 'id': paymentId
             },
-            'bestellpositionen' : session
+            'bestellpositionen' : session 
         })
     });
     const data = response.json();
