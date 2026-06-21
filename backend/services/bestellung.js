@@ -6,7 +6,7 @@ var serviceRouter = express.Router();
 console.log(' Service Bestellung ');
 
 serviceRouter.post('/newOrder', function(request, response) {
-    console.log('Service Bestellung: Client requested creation of new Record');
+    
     
     var errorMsgs=[];
     if (helper.isUndefined(request.body.bestellzeitpunkt)) {
@@ -21,9 +21,10 @@ serviceRouter.post('/newOrder', function(request, response) {
         request.body.besteller = null
     } else if (helper.isUndefined(request.body.besteller.id)) {
         errorMsgs.push('Besteller gesetzt, aber Id fehlt');
-    } else {
-        request.body.besteller = request.body.besteller.id;
-    }
+    } 
+    //else {
+    //    request.body.besteller = request.body.besteller.id;
+    //}
 
     if (helper.isUndefined(request.body.zahlungsart)) {
         errorMsgs.push('Zahlungart fehlt');
@@ -48,9 +49,15 @@ serviceRouter.post('/newOrder', function(request, response) {
         });
     }
 
+    console.log("Ich bin jetzt im Service bei NEW ORDER DRINNE");
+    console.log('Service Bestellung: Client requested creation of new Record');
+    console.log("IM ENDPUNKT NEWORDER DER BODY: ", request);
+
     const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
     try {
-        var obj = bestellungDao.create(request.body.bestellzeitpunkt, request.body.besteller.id, request.body.zahlungsart.id, request.body.bestellpositionen);
+        console.log("BEVOR DER BESTELLUNGDAO CREATE AUFGERUFEN WIRD");
+        console.log("Das ist die Request Body: ", request.body);
+        var obj = bestellungDao.create(request.body.bestellzeitpunkt, parseInt(request.body.besteller.id), request.body.zahlungsart.id, request.body.bestellpositionen);
         console.log('Service Bestellung: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

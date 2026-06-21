@@ -228,8 +228,10 @@
           return;
         }
 
-        var paymentMethodId = selectedPaymentMethod.value;
-        var infoAbschluss = await closeOrder('/newOrder', paymentMethodId, parseSession);
+        const option = selectedPaymentMethod.options[selectedPaymentMethod.selectedIndex];
+        
+
+        var infoAbschluss = await closeOrder('/newOrder', parseInt(option.className) , parseSession);
         window.location.href = "success.html";
         console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
 

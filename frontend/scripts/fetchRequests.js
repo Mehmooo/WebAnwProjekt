@@ -105,22 +105,28 @@ async function loadAllPaymentMethods(endpoint) {
 
 async function closeOrder(endpoint, paymentId, session) {
     const apiFetch = apiMain + endpoint;
+    bodyData = {
+        "besteller": {
+            "id": 1
+        },
+        "zahlungsart": {
+            "id": paymentId
+        },
+        "bestellpositionen": session
+    };
+    console.log("BODY DATA:", bodyData);
+    console.log("BODY JSON:", JSON.stringify(bodyData, null, 2));
+
     console.log("DER API FETCH: ", apiFetch);
     const response = await fetch(apiFetch, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            'besteller': {
-                'id': 1
-            },
-            'zahlungsart': {
-                'id': paymentId
-            },
-            'bestellpositionen' : session 
-        })
+        body: JSON.stringify(bodyData)
     });
+    console.log("AM ENDE VON CLOSE ORDER FUNCTION");
+    console.log("Das ist die Response: ", response);
     const data = response.json();
     return data;
 }

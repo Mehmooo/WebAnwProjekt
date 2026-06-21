@@ -3,6 +3,8 @@ const BestellpositionDao = require('./bestellpositionDao.js');
 const ProduktDao = require('./produktDao.js');
 const ProduktbildDao = require('./produktbildDao.js');
 const PersonDao = require('./personDao.js');
+const ZahlungsartDao = require('./zahlungsartDao.js');
+
 
 class BestellungDao {
     constructor(dbConnection) {
@@ -56,6 +58,7 @@ class BestellungDao {
         if(result.changes != 1) {
             throw new Error('Could not insert new Record. Data: ' + params);
         }
+        console.log("Vor dem erstellen der Bestellpositionen");
 
         if (bestellpositionen.length > 0) {
             for (var element of bestellpositionen) {

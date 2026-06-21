@@ -23,7 +23,7 @@ class BestellpositionDao {
         result.bestellung = {'id': result.bestellungId};
         delete result.bestellungId;
 
-        result.produkt = produktDao.loadById(result.produktId);
+        result.produkt = produktDao.loadProductById(result.produktId);
         delete result.produktId;
 
         return result;
@@ -34,7 +34,7 @@ class BestellpositionDao {
 
         var sql = 'SELECT * FROM Bestellposition WHERE bestellungId=?';
         var statement = this._conn.prepare(sql);
-        var result = statement.all(bestellungId);
+        var result = statement.all(id);
 
         if (helper.isArrayEmpty(result))
             return [];
@@ -43,7 +43,7 @@ class BestellpositionDao {
             result[i].bestellung = {'id': result[i].bestellungId};
             delete result[i].bestellungId;
 
-            result[i].produkt = produktDao.loadById(result[i].produktId);
+            result[i].produkt = produktDao.loadProductById(result[i].produktId);
             delete result[i].produktId;
         }
 

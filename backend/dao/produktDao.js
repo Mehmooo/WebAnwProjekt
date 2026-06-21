@@ -10,6 +10,7 @@ class ProduktDao {
         return this._conn;
     }
 
+
     loadAllProducts() {
         const produktBild = new ProduktbildDao(this._conn);
         var sql = 'SELECT id, bezeichnung, preis FROM Produkt';
