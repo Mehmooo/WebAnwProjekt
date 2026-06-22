@@ -12,6 +12,24 @@ const labels = {
 
 var isEditing = false;
 
+function parseJwt(token) {
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+      .join(""),
+  );
+  return JSON.parse(jsonPayload);
+}
+
+function getUserInfo() {
+  const token = localStorage.getItem("authToken");
+  if (!token) return null;
+  return parseJwt(token);
+}
+
 async function loadAccountData(endpoint) {
   var apiFetch = apiMain + endpoint;
   console.log("The API Fetch URL: " + apiFetch);
@@ -74,13 +92,43 @@ function renderEdit() {
   });
 }
 
-function saveData() {
+async function saveData() {
+  // Inputs in accountData übernehmen
   document.querySelectorAll(".personal-data-view input").forEach((input) => {
     const key = input.dataset.key;
     accountData[key] = input.value;
   });
 
-  console.log("Gespeichert:", accountData);
+  // Mapping zurück ins API-Format
+  const payload = {
+    id: getUserInfo().userId, // wichtig: muss vorhanden sein
+    vorname: accountData.firstname,
+    nachname: accountData.lastname,
+    email: accountData.email,
+    adresse: {
+      id: accountData.addressId, // musst du ggf. beim Laden speichern!
+    },
+  };
+
+  try {
+    const res = await fetch(apiMain + "/person", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log("Gespeichert ✔", data);
+    } else {
+      console.log("Fehler beim Speichern:", data);
+    }
+  } catch (err) {
+    console.error("Network Fehler:", err);
+  }
 }
 
 function toggleEdit() {
@@ -90,6 +138,7 @@ function toggleEdit() {
     renderEdit();
     button.textContent = "Speichern";
   } else {
+    // hier kommt der endpoint rein
     saveData();
     renderView();
     button.textContent = "Persönliche Daten ändern";

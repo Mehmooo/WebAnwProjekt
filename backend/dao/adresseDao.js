@@ -72,7 +72,7 @@ class AdresseDao {
     if (result.changes != 1)
       throw new Error("Could not update existing Record. Data: " + params);
 
-    return this.loadById(id);
+    return id;
   }
 
   delete(id) {
