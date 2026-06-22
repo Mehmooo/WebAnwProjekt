@@ -78,7 +78,7 @@ class PersonDao {
     adresseId = 1,
     email = "",
     geburtstag = null,
-    telefonnummer = "1",
+    telefonnummer = "",
     anrede = "Herr",
   ) {
     var sql =
