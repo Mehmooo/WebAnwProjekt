@@ -11,4 +11,7 @@ async function login(event) {
 
   const data = await res.json();
   document.getElementById("result").innerText = data.message;
+  if (res.ok) {
+    localStorage.setItem("authToken", data.token);
+  }
 }

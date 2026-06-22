@@ -9,11 +9,11 @@ class AuthDao {
     return this._conn;
   }
 
-  register(username, password, firstname, lastname, adresse) {
+  register(username, password, personId) {
     var sql =
-      "INSERT INTO Benutzer (benutzername, passwort, benuitzerrolleId, PersonId) VALUES (?, ?, ?, ?)";
+      "INSERT INTO Benutzer (benutzername, passwort, benutzerrolleId, PersonId) VALUES (?, ?, ?, ?)";
     var statement = this._conn.prepare(sql);
-    var result = statement.run(username, password, 2);
+    var result = statement.run(username, password, 2, personId);
     if (helper.isUndefined(result))
       throw new Error("Benutzer konnte nicht registriert werden");
     return result;
@@ -25,7 +25,7 @@ class AuthDao {
     var result = statement.get(username);
     if (!result) {
       console.log("Benutzer nicht gefunden: ", username);
-      throw new Error("Benutzer nicht gefunden");
+      //throw new Error("Benutzer nicht gefunden");
     }
     return result;
   }
