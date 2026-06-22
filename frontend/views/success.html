@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/style/extra.css" />
     <!--<script src="Datei.js" defer></script>-->
     <link rel="shortcut icon" href="4Dudes-Photoroom.png" type="image/x-icon" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style/style.css" />
   </head>
 
   <body>
@@ -53,6 +53,33 @@
       </div>
     </main>
 
+    <main>
+      <div class="cardinfo">
+
+        <div class="checkout-section" id="productSummary">
+          <h3>Produkte die von Ihnen gekauft wurden</h3>
+
+          <div class="checkout-row checkout-head">
+            <div>Produkt</div>
+            <div>Variante</div>
+            <div>Menge</div>
+            <div>Einzelpreis</div>
+            <div>Summe</div>
+          </div>
+
+            
+            
+          <div class="checkout-summary">
+            <p id="subtotal">Zwischensumme: </p>
+            <p id="tax">enth. MwSt.: </p>
+            <p class="cart-total" id="total">Gesamtpreis: </p>
+          </div>
+          
+        </div>
+
+      </div>
+    </main>
+
     <footer class="footer">
       <div class="items3">
         <img
@@ -73,5 +100,81 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        var finalTotSum = 0.00;
+        var grandparent = document.querySelector('#productSummary');
+        var parseSession = JSON.parse(sessionStorage.getItem('cart'));
+        for (let i = 0; i<parseSession.length; i++) {
+          let parent = document.createElement('div');
+          parent.classList.add('checkout-article');
+          parent.classList.add('checkout-row');
+          grandparent.appendChild(parent);
+
+          let child1 = document.createElement('div');
+          let child2 = document.createElement('div');
+          let child3 = document.createElement('div');
+          let child4 = document.createElement('div');
+          let child5 = document.createElement('div');
+
+          child1.innerText = parseSession[i].title;
+          child2.innerText = parseSession[i].variant;
+          child3.innerText = parseSession[i].amount;
+          child4.innerText = (parseSession[i].unitPrice).replace('.', ',');
+          
+
+          let intUnitPrice = parseFloat((parseSession[i].unitPrice).slice(0,parseSession[i].unitPrice.length-1));
+          console.log("Der intUnitPrice: ", intUnitPrice);
+          let intAmount = parseFloat(parseSession[i].amount);
+          console.log("Der intAmount: ", intAmount);
+
+          let sumTotal = intUnitPrice*intAmount;
+          
+          console.log("In der for loop die sumTotal entwicklung: ", sumTotal);
+          finalTotSum += sumTotal;
+          console.log("In der for loop die finalTotSum entwicklung: ", finalTotSum);
+          let stringSumTotal = (sumTotal.toFixed(2)).replace('.', ',') + '€';
+
+          child5.innerText = stringSumTotal;
+
+          parent.appendChild(child1);
+          parent.appendChild(child2);
+          parent.appendChild(child3);
+          parent.appendChild(child4);
+          parent.appendChild(child5);
+
+          const parent3 = document.querySelector('#productSummary');
+          const summary = document.querySelector('.checkout-summary');
+
+          parent3.insertBefore(parent, summary);
+        }
+
+                let stringFinalTotSum = (finalTotSum.toFixed(2)) + '€';
+        let tax = finalTotSum*0.19;
+        let stringTax = (tax.toFixed(2)).replace('.', ',') + '€';
+        let subtotal = finalTotSum*0.81;
+        let stringSubtotal = (subtotal.toFixed(2)).replace('.', ',') + '€';
+        
+        
+        //let stringTax = (tax.toString() + '€').replace('.', ',');
+        //let stringSubtotal = (subtotal.toString() + '€').replace('.', ',');
+
+        let subtotalArea = document.querySelector('#subtotal');
+        let taxArea = document.querySelector('#tax');
+        let totalSumArea = document.querySelector('#total');
+
+        let strongSubtotal = document.createElement('strong');
+        let strongTax = document.createElement('strong');
+        let strongTotal = document.createElement('strong');
+
+        strongSubtotal.innerText = stringSubtotal;
+        strongTax.innerText = stringTax;
+        strongTotal.innerText = stringFinalTotSum;
+
+        subtotalArea.appendChild(strongSubtotal);
+        taxArea.appendChild(strongTax);
+        totalSumArea.appendChild(strongTotal);
+      });
+    </script>
   </body>
 </html>
