@@ -11,6 +11,9 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="/style/headerfooter.css" />
+    <script src="../scripts/logedin.js" defer></script>
+    <script src="../scripts/acc.js" defer></script>
+    <script src="../scripts/jwt.js"></script>
   </head>
   <body class="dashboard-page">
     <header class="header">
@@ -34,15 +37,20 @@
     </header>
     <main>
       <div class="page-container main-box">
-        <div class="personal-data-view">
-          <h2>Mein Account</h2>
+        <h2>Mein Account</h2>
+        <div class="personal-data-view" id="personal-data-view">
+          <!--  
           <p>Name: Mustermann</p>
           <p>Vorname: Max</p>
           <p>Straße: Mustermannstraße 64</p>
           <p>Stadt: 72123 Musterstadt</p>
           <p>E-Mail: max.mustermann@gmail.com</p>
-          <button id="add-cart">Persönliche Daten ändern</button>
+          
+          -->
         </div>
+        <button id="edit-btn" onclick="toggleEdit()">
+          Persönliche Daten ändern
+        </button>
       </div>
     </main>
 
@@ -67,4 +75,12 @@
       </div>
     </footer>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => test());
+    function test() {
+      const fetch = "/person/gib/" + getUserInfo().userId;
+      console.log(fetch);
+      loadAccountData(fetch);
+    }
+  </script>
 </html>

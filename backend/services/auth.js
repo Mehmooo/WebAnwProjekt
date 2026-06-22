@@ -83,16 +83,13 @@ serviceRouter.post("/login", async function (req, res) {
       return res.status(401).json({ message: "Ungültige Anmeldedaten" });
     }
     console.log("User infos: ", obj);
-    /*const passwordMatch = await helper.comparePassword(
-        password,
-        obj.passwort,
-      );*/
-    const passwordmatch = password === obj.passwort; // For simplicity, using plain text comparison. In production, use hashed passwords!
-    if (!passwordmatch) {
+    const passwordMatch = await helper.comparePassword(password, obj.passwort);
+    //const passwordMatch = password === obj.passwort; // For simplicity, using plain text comparison. In production, use hashed passwords!
+    if (!passwordMatch) {
       return res.status(401).json({ message: "Ungültige Anmeldedaten" });
     } else {
       const token = jwt.sign(
-        { userId: obj.userId, username: obj.username },
+        { userId: obj.id, username: obj.benutzername },
         JWT_SECRET,
         { expiresIn: "1h" },
       );

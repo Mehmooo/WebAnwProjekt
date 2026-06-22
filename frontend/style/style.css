@@ -451,3 +451,18 @@ body.dashboard-page {
   font-size: 20px;
   width: 280px;
 }
+
+.items2 {
+  flex: 0 0 auto;
+  width: 50;
+}
+
+.field-row label {
+  width: 200px;
+  font-weight: bold;
+}
+
+.field-row input {
+  flex: 1;
+  padding: 6px;
+}
