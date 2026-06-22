@@ -229,3 +229,15 @@ module.exports.comparePassword = async function (password, hash) {
   const bcrypt = require("bcrypt");
   return await bcrypt.compare(password, hash);
 };
+
+module.exports.setadresse = function (city, postcode, street, number) {
+  let out = postcode + " " + city + ";" + street + " " + number;
+  return out;
+};
+
+module.exports.getadresse = function (adresse) {
+  const adressarray = adresse.split(";");
+  let city = adressarray[0];
+  let street = adressarray[1];
+  return (city, street);
+};

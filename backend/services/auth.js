@@ -40,27 +40,20 @@ serviceRouter.post("/login", async function (req, res) {
         .status(400)
         .json({ message: "Username and password are required" });
     }
-    const userExists = await authDao.exists(username);
-    if (userExists) {
-      const obj = await authDao.findByUsername(username); //Call Function in the DAO
-      if (!obj) {
-        return res.status(401).json({ message: "Ungültige Anmeldedaten" });
-      }
-      console.log("User infos: ", obj);
-      /*const passwordMatch = await helper.comparePassword(
+    const obj = await authDao.findByUsername(username); //Call Function in the DAO
+    if (!obj) {
+      return res.status(401).json({ message: "Ungültige Anmeldedaten" });
+    }
+    console.log("User infos: ", obj);
+    /*const passwordMatch = await helper.comparePassword(
         password,
         obj.passwort,
       );*/
-      const passwordMatch = password === obj.passwort; // For simplicity, using plain text comparison. In production, use hashed passwords!
-      if (!passwordMatch) {
-        return res.status(401).json({ message: "Ungültige Anmeldedaten" });
-      } else {
-        res
-          .status(200)
-          .json({ message: "Benutzer erfolgreich eingeloggt! 🎉" });
-      }
+    const passwordMatch = password === obj.passwort; // For simplicity, using plain text comparison. In production, use hashed passwords!
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Ungültige Anmeldedaten" });
     } else {
-      res.status(401).json({ message: "Ungültige Anmeldedaten" });
+      res.status(200).json({ message: "Benutzer erfolgreich eingeloggt! 🎉" });
     }
   } catch (ex) {
     console.error("Error during login: ", ex);

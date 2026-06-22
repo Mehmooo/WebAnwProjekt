@@ -9,20 +9,16 @@ class AuthDao {
     return this._conn;
   }
 
-  register(username, password) {
-    var sql = "INSERT INTO Benutzer (benutzername, passwort) VALUES (?, ?)";
+  register(username, password, firstname, lastname, adresse) {
+    var sql =
+      "INSERT INTO Benutzer (benutzername, passwort, benuitzerrolleId, PersonId) VALUES (?, ?, ?, ?)";
     var statement = this._conn.prepare(sql);
-    var result = statement.run(username, password);
+    var result = statement.run(username, password, 2);
     if (helper.isUndefined(result))
       throw new Error("Benutzer konnte nicht registriert werden");
     return result;
   }
-  exists(username) {
-    var sql = "SELECT * FROM Benutzer WHERE benutzername=?";
-    var statement = this._conn.prepare(sql);
-    var result = statement.get(username);
-    return !!result;
-  }
+
   findByUsername(username) {
     var sql = "SELECT * FROM Benutzer WHERE benutzername=?";
     var statement = this._conn.prepare(sql);

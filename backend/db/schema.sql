@@ -29,7 +29,7 @@ CREATE TABLE Person (
 	vorname TEXT NOT NULL,
 	nachname TEXT NOT NULL,
 	adresseId INTEGER NOT NULL,
-	telefonnummer TEXT NOT NULL,
+	telefonnummer TEXT default NULL,
 	email TEXT NOT NULL,
 	geburtstag TEXT DEFAULT NULL,
 	CONSTRAINT fk_Person1 FOREIGN KEY (adresseId) REFERENCES Adresse(id)
