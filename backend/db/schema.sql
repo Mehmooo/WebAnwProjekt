@@ -58,7 +58,7 @@ CREATE TABLE Zahlungsart (
 CREATE TABLE Bestellung (
 	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	bestellzeitpunkt TEXT NOT NULL,
-	bestellerId INTEGER DEFAULT NULL,
+	bestellerId INTEGER NOT NULL,
 	zahlungsartId INTEGER NOT NULL,
 	CONSTRAINT fk_Bestellung1 FOREIGN KEY (bestellerId) REFERENCES Person(id),
 	CONSTRAINT fk_Bestellung2 FOREIGN KEY (zahlungsartId) REFERENCES Zahlungsart(id)

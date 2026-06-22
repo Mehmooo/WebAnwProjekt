@@ -42,7 +42,7 @@ async function loadAllProductsInOverview(endpoint) {
                 a.classList.add('product-card');
                 a.href = `product_detail.html?id=${data[i].id}`;
                 div.classList.add('products_square');
-                img.src = data[i].bildpfad.bildpfad;
+                img.src = "http://localhost:8000" + data[i].bildpfad.bildpfad;
                 console.log("Bildpfad ", data[i].bildpfad.bildpfad);
                 img.alt = 'DEFAULT';
                 p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis} €`;
@@ -84,7 +84,7 @@ async function loadProductDetail() {
         //const responsePictureData = await loadPicturesHomepage('/loadPicture', id);
         console.log('Antwort von Detail Bild: ' + data.bildpfad.bildpfad);
         const pictureDetail = document.querySelector('#pictureDetailSite');
-        pictureDetail.src = data.bildpfad.bildpfad;
+        pictureDetail.src = "http://localhost:8000" + data.bildpfad.bildpfad;
         
         pictureDetail.alt = 'DEFAULT';
         //await loadVariants();
@@ -93,4 +93,40 @@ async function loadProductDetail() {
     }
     console.log("DETAILSEITE FERTIG GELADEN");
     
+}
+
+async function loadAllPaymentMethods(endpoint) {
+    const apiFetch = apiMain + endpoint;
+    const response = await fetch(apiFetch);
+    const data = await response.json();
+    return data;
+
+}
+
+async function closeOrder(endpoint, paymentId, session) {
+    const apiFetch = apiMain + endpoint;
+    bodyData = {
+        "besteller": {
+            "id": 1
+        },
+        "zahlungsart": {
+            "id": paymentId
+        },
+        "bestellpositionen": session
+    };
+    console.log("BODY DATA:", bodyData);
+    console.log("BODY JSON:", JSON.stringify(bodyData, null, 2));
+
+    console.log("DER API FETCH: ", apiFetch);
+    const response = await fetch(apiFetch, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bodyData)
+    });
+    console.log("AM ENDE VON CLOSE ORDER FUNCTION");
+    console.log("Das ist die Response: ", response);
+    const data = response.json();
+    return data;
 }

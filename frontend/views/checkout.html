@@ -6,11 +6,8 @@
     <title>Checkout</title>
     <link rel="stylesheet" href="/style/style.css" />
     <link rel="stylesheet" href="/style/headerfooter.css" />
-    <link
-      rel="shortcut icon"
-      href="/images/4Dudes-Photoroom.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="/images/4Dudes-Photoroom.png" type="image/x-icon" />
+    <script src="/scripts/fetchRequests.js"></script>
   </head>
 
   <body class="dashboard-page">
@@ -50,12 +47,14 @@
           <div class="checkout-section">
             <h3>Zahlungsmethode</h3>
             <select class="input-field">
+              <!--
               <option>PayPal</option>
               <option>Kreditkarte</option>
+            -->
             </select>
           </div>
 
-          <div class="checkout-section">
+          <div class="checkout-section" id="productSummary">
             <h3>Produkte im Warenkorb</h3>
 
             <div class="checkout-row checkout-head">
@@ -66,37 +65,25 @@
               <div>Summe</div>
             </div>
 
-            <div class="checkout-row">
-              <div>Mini T-Rex</div>
-              <div>Grau</div>
-              <div>1</div>
-              <div class="price">9,99 €</div>
-              <div class="price">9,99 €</div>
-            </div>
-
-            <div class="checkout-row">
-              <div>Boot Modell</div>
-              <div>Grau</div>
-              <div>1</div>
-              <div class="price">9,99 €</div>
-              <div class="price">9,99 €</div>
-            </div>
-
+            
+            
             <div class="checkout-summary">
-              <p>Zwischensumme: <strong>19,98 €</strong></p>
-              <p>enth. MwSt.: <strong>3,19 €</strong></p>
-              <p class="cart-total">Gesamtpreis: <strong>19,98 €</strong></p>
+              <p id="subtotal">Zwischensumme: </p>
+              <p id="tax">enth. MwSt.: </p>
+              <p class="cart-total" id="total">Gesamtpreis: </p>
             </div>
+          
           </div>
+        
 
           <div class="checkout-agb">
             <label>
-              <input type="checkbox" required />
+              <input type="checkbox" id="agb" required />
               Ich akzeptiere die AGB.
             </label>
           </div>
 
-          <a href="/views/success.html">
+          <a>
             <button class="checkout-button">
               Bestellung abschließen & zahlen
             </button>
@@ -122,5 +109,135 @@
         <p class="right">&copy; 2026 4Dudes. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const callApi = await loadAllPaymentMethods('/loadAllPaymentMethods');
+        console.log("Was jetzt in Checkout.html vorhanden ist: ", callApi);
+        var parent = document.querySelector('.input-field');
+        for (let i = 0; i<callApi.length; i++) {
+          let optionTag = document.createElement('option');
+          //optionTag.classList.add(`${callApi[i].bezeichnung}`);
+          optionTag.innerText = callApi[i].bezeichnung;
+          parent.appendChild(optionTag);
+          optionTag.classList.add(`${callApi[i].id}`);
+        }
+
+        console.log("Fertig mit dem Laden von Zahlungsarten");
+        var finalTotSum = 0.00;
+        var grandparent = document.querySelector('#productSummary');
+        var parseSession = JSON.parse(sessionStorage.getItem('cart'));
+        for (let i = 0; i<parseSession.length; i++) {
+          let parent = document.createElement('div');
+          parent.classList.add('checkout-article');
+          parent.classList.add('checkout-row');
+          grandparent.appendChild(parent);
+
+          let child1 = document.createElement('div');
+          let child2 = document.createElement('div');
+          let child3 = document.createElement('div');
+          let child4 = document.createElement('div');
+          let child5 = document.createElement('div');
+
+          child1.innerText = parseSession[i].title;
+          child2.innerText = parseSession[i].variant;
+          child3.innerText = parseSession[i].amount;
+          child4.innerText = (parseSession[i].unitPrice).replace('.', ',');
+          
+
+          let intUnitPrice = parseFloat((parseSession[i].unitPrice).slice(0,parseSession[i].unitPrice.length-1));
+          console.log("Der intUnitPrice: ", intUnitPrice);
+          let intAmount = parseFloat(parseSession[i].amount);
+          console.log("Der intAmount: ", intAmount);
+
+          let sumTotal = intUnitPrice*intAmount;
+          
+          console.log("In der for loop die sumTotal entwicklung: ", sumTotal);
+          finalTotSum += sumTotal;
+          console.log("In der for loop die finalTotSum entwicklung: ", finalTotSum);
+          let stringSumTotal = (sumTotal.toFixed(2)).replace('.', ',') + '€';
+
+          child5.innerText = stringSumTotal;
+
+          parent.appendChild(child1);
+          parent.appendChild(child2);
+          parent.appendChild(child3);
+          parent.appendChild(child4);
+          parent.appendChild(child5);
+
+          const parent3 = document.querySelector('#productSummary');
+          const summary = document.querySelector('.checkout-summary');
+
+          parent3.insertBefore(parent, summary);
+
+
+        }
+
+        let stringFinalTotSum = (finalTotSum.toFixed(2)) + '€';
+        let tax = finalTotSum*0.19;
+        let stringTax = (tax.toFixed(2)).replace('.', ',') + '€';
+        let subtotal = finalTotSum*0.81;
+        let stringSubtotal = (subtotal.toFixed(2)).replace('.', ',') + '€';
+        
+        
+        //let stringTax = (tax.toString() + '€').replace('.', ',');
+        //let stringSubtotal = (subtotal.toString() + '€').replace('.', ',');
+
+        let subtotalArea = document.querySelector('#subtotal');
+        let taxArea = document.querySelector('#tax');
+        let totalSumArea = document.querySelector('#total');
+
+        let strongSubtotal = document.createElement('strong');
+        let strongTax = document.createElement('strong');
+        let strongTotal = document.createElement('strong');
+
+        strongSubtotal.innerText = stringSubtotal;
+        strongTax.innerText = stringTax;
+        strongTotal.innerText = stringFinalTotSum;
+
+        subtotalArea.appendChild(strongSubtotal);
+        taxArea.appendChild(strongTax);
+        totalSumArea.appendChild(strongTotal);
+
+    
+        console.log("AM ENDE VON CHECKOUT:HTML");
+
+        
+
+
+
+      });
+
+      var closeOrderButton = document.querySelector('.checkout-button');
+      closeOrderButton.addEventListener('click', async () => {
+        let parseSession = JSON.parse(sessionStorage.getItem('cart'));
+        console.log("Hier kommt die Antwort darunter ob geparsed wurde oder nicht");
+        console.log(Array.isArray(parseSession));
+        console.log("typeof parseSession: ", typeof parseSession);
+        console.log("Der Inhalt von parseSession: ", parseSession);
+        let checkedBox = document.getElementById('agb').checked // Boolean Value
+        let selectedPaymentMethod = document.querySelector('.input-field');
+
+        if (!checkedBox) {
+          alert("Akzeptieren Sie die AGB's");
+          return;
+        }
+
+        if (selectedPaymentMethod.value == null) {
+          alert("Wählen Sie eine Zahlungsmethode aus");
+          return;
+        }
+
+        const option = selectedPaymentMethod.options[selectedPaymentMethod.selectedIndex];
+        
+
+        var infoAbschluss = await closeOrder('/newOrder', parseInt(option.className) , parseSession);
+        window.location.href = "success.html";
+        console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
+
+        
+
+      })
+    </script>
   </body>
 </html>
