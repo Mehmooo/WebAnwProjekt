@@ -13,6 +13,7 @@
     />
     <script src="/scripts/fetchRequests.js"></script>
     <script src="/scripts/sessionManager.js"></script>
+    <script src="/scripts/logedin.js"></script>
   </head>
   <body class="product_detail_view">
     <header class="header">
@@ -126,6 +127,10 @@
         if (selectedColor == null) {
           alert("Variante muss ausgewählt werden");
           console.log("Es wurde ein Alert aufgerufen");
+          return;
+        }
+        if (!checkAuth()) {
+          alert("Sie müssen sich anmelden/registrieren, bevor Sie Produkte in den Warenkorb hinzufügen können!");
           return;
         }
         // If Client to click fast on addCart Button, while Image not loaded

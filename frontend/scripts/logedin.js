@@ -1,4 +1,5 @@
 function checkAuth() {
+  console.log("IN DER CHECK AUTH DRINNE");
   const token = localStorage.getItem("authToken");
   if (!token) {
     window.location.href = "/auth/login.html";
@@ -15,6 +16,9 @@ function isTokenExpired(token) {
   return payload.exp * 1000 < Date.now();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  checkAuth();
-});
+
+// Was macht das hier genau, ich habe keine HTML Datei gefunden, auf welches document sich das hier bezieht???
+
+//document.addEventListener("DOMContentLoaded", () => {
+//  checkAuth();
+//});
