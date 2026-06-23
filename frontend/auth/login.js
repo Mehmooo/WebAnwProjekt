@@ -13,5 +13,6 @@ async function login(event) {
   document.getElementById("result").innerText = data.message;
   if (res.ok) {
     localStorage.setItem("authToken", data.token);
+    window.location.href = "/index.html";
   }
 }
