@@ -45,7 +45,7 @@ async function loadAllProductsInOverview(endpoint) {
                 img.src = "http://localhost:8000" + data[i].bildpfad.bildpfad;
                 console.log("Bildpfad ", data[i].bildpfad.bildpfad);
                 img.alt = 'DEFAULT';
-                p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis} €`;
+                p.innerHTML = `${data[i].bezeichnung}<br>${data[i].preis.toString().replace('.', ',')} €`;
                 divParent.appendChild(a);
                 a.appendChild(div);
                 div.appendChild(img);

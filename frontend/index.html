@@ -139,7 +139,9 @@
         event.preventDefault(); //Block the Navigation
         if (!checkAuth()) {
           alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
+          return;
         }
+        window.location.href = "/views/account.html";
       })
 
       //If user click on the "Einkaufswagen" button
@@ -147,7 +149,9 @@
         event.preventDefault(); //Block the Navigation
         if (!checkAuth()) {
           alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
+          return;
         }
+        window.location.href = "/views/cart.html";
       })
     </script>
   </body>
