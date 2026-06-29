@@ -12,6 +12,7 @@
       type="image/x-icon"
     />
     <script src="/scripts/fetchRequests.js"></script>
+    <script src="/scripts/logedin.js"></script>
   </head>
 
   <body class="dashboard-page">
@@ -24,13 +25,13 @@
       </div>
 
       <div class="nav">
-        <a href="/auth/login.html">
+        <a id="loginNav" href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
-        <a href="/views/account.html">
+        <a id="accountNav" href="/views/account.html">
           <input type="button" value="ACCOUNT" class="but" />
         </a>
-        <a href="/views/cart.html">
+        <a id="cartNav" href="/views/cart.html">
           <input type="button" value="EINKAUFSWAGEN" class="but" />
         </a>
       </div>
@@ -130,6 +131,23 @@
           i++;
         }
       }
+
+
+      //If user click on the "Account" button
+      document.getElementById('accountNav').addEventListener('click', (event) => {
+        event.preventDefault(); //Block the Navigation
+        if (!checkAuth()) {
+          alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
+        }
+      })
+
+      //If user click on the "Einkaufswagen" button
+      document.getElementById('cartNav').addEventListener('click', (event) => {
+        event.preventDefault(); //Block the Navigation
+        if (!checkAuth()) {
+          alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
+        }
+      })
     </script>
   </body>
 </html>
