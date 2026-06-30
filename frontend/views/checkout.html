@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/style/headerfooter.css" />
     <link rel="shortcut icon" href="http://localhost:8000/images/4Dudes-Photoroom.png" type="image/x-icon" />
     <script src="/scripts/fetchRequests.js"></script>
+    <script src="/scripts/jwt.js"></script>
   </head>
 
   <body class="dashboard-page">
@@ -35,16 +36,15 @@
     <main>
       <div class="page-container main-box">
         <h2 class="checkout-title">Checkout</h2>
-
+        
         <div class="checkout-layout">
           <div class="checkout-section">
             <h3>Lieferadresse</h3>
-            <!--
-            <p>Max Mustermann</p>
-            <p>Musterstraße 12</p>
-            <p>12345 Musterstadt</p>
-            -->
-          </div>
+            <div id="delivery-address">
+              <p>Lieferadresse wird geladen...</p>
+            </div>
+        </div>
+         
 
           <div class="checkout-section">
             <h3>Zahlungsmethode</h3>
@@ -113,7 +113,49 @@
     </footer>
 
     <script>
+      let checkoutPerson = null;
+
+      function renderDeliveryAddress(person) {
+        const container = document.querySelector("#delivery-address");
+        container.innerHTML = "";
+
+        const name = document.createElement("p");
+        name.textContent = person.vorname + " " + person.nachname;
+
+        const street = document.createElement("p");
+        street.textContent = person.adresse.strasse + " " + person.adresse.hausnummer;
+
+        const city = document.createElement("p");
+        city.textContent = person.adresse.plz + " " + person.adresse.ort;
+
+        const email = document.createElement("p");
+        email.textContent = person.email;
+
+        container.appendChild(name);
+        container.appendChild(street);
+        container.appendChild(city);
+        container.appendChild(email);
+      }
       document.addEventListener('DOMContentLoaded', async () => {
+        const checkoutUserInfo = getUserInfo();
+
+        if (!checkoutUserInfo) {
+          alert("Bitte zuerst einloggen.");
+          window.location.href = "/auth/login.html";
+          return;
+        }
+
+        const personData = await loadCheckoutUserData("/person/gib/" + checkoutUserInfo.userId);
+
+        if (!personData || !personData.adresse) {
+          document.querySelector("#delivery-address").innerHTML =
+            "<p>Lieferadresse konnte nicht geladen werden.</p>";
+          return;
+        }
+
+        checkoutPerson = personData;
+        renderDeliveryAddress(checkoutPerson);
+
         const callApi = await loadAllPaymentMethods('/loadAllPaymentMethods');
         console.log("Was jetzt in Checkout.html vorhanden ist: ", callApi);
         var parent = document.querySelector('.input-field');
@@ -233,9 +275,24 @@
         const option = selectedPaymentMethod.options[selectedPaymentMethod.selectedIndex];
         
 
-        var infoAbschluss = await closeOrder('/newOrder', parseInt(option.className) , parseSession);
+        if (!checkoutPerson) {
+          alert("Benutzerdaten konnten nicht geladen werden.");
+          return;
+        }
+
+        var infoAbschluss = await closeOrder(
+          '/newOrder',
+          parseInt(option.className),
+          parseSession,
+          checkoutPerson.id
+        );
+
+        sessionStorage.setItem("lastOrder", JSON.stringify(infoAbschluss));
+
         window.location.href = "success.html";
         console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
+        
+        
 
         
 

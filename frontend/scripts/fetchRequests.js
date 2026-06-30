@@ -20,6 +20,26 @@ async function loadPicturesHomepage(endpoint) {
     }
 }
 
+async function loadCheckoutUserData(endpoint) {
+    const apiFetch = apiMain + endpoint;
+    console.log("Checkout User API:", apiFetch);
+
+    try {
+        const response = await fetch(apiFetch);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            return data;
+        } else {
+            console.log("Fehler beim Laden der Checkout-Benutzerdaten:", data);
+            return null;
+        }
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 async function loadAllProductsInOverview(endpoint) {
     console.log("Jetzt auf PRODUKTSÜBERSICHTSEITE");
     var apiFetch = apiMain + endpoint;
@@ -103,11 +123,11 @@ async function loadAllPaymentMethods(endpoint) {
 
 }
 
-async function closeOrder(endpoint, paymentId, session) {
+async function closeOrder(endpoint, paymentId, session, personId) {
     const apiFetch = apiMain + endpoint;
-    bodyData = {
+    const bodyData = {
         "besteller": {
-            "id": 1
+            "id": personId
         },
         "zahlungsart": {
             "id": paymentId
@@ -127,6 +147,6 @@ async function closeOrder(endpoint, paymentId, session) {
     });
     console.log("AM ENDE VON CLOSE ORDER FUNCTION");
     console.log("Das ist die Response: ", response);
-    const data = response.json();
+    const data = await response.json();
     return data;
 }
