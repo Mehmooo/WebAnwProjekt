@@ -55,6 +55,23 @@
 
     <main>
       <div class="cardinfo">
+        <div class="checkout-section" id="orderSummary">
+          <h1>Ihre Bestellungsdaten:</h1>
+          <p id="orderId">Ihre Bestellnummer: </p>
+          <p id="paymentMethod">Ihre Zahlungsart: </p>
+          <p id="orderDate">Die Bestellung wurde ausgeführt am: </p>
+          <h1>Ihre persönliche Daten: </h1>
+          <p id="surname">Vorname: </p>
+          <p id="lastname">Nachname: </p>
+          <p id="street">Straße: </p>
+          <p id="houseNo">Hausnummer: </p>
+          <p>Die Bestellung wird in den nächsten 2-4 Werktagen an Ihrer Adresse geliefert.</p>
+        </div>
+      </div>
+    </main>
+
+    <main>
+      <div class="cardinfo">
 
         <div class="checkout-section" id="productSummary">
           <h3>Produkte die von Ihnen gekauft wurden</h3>
@@ -174,6 +191,34 @@
         subtotalArea.appendChild(strongSubtotal);
         taxArea.appendChild(strongTax);
         totalSumArea.appendChild(strongTotal);
+
+        // Hier darunter kommen die Bestellungsdaten
+        let orderIdArea = document.querySelector('#orderId');
+        let paymentMethodArea = document.querySelector('#paymentMethod');
+        let orderDateArea = document.querySelector('#orderDate');
+        let orderSession = JSON.parse(sessionStorage.getItem('lastOrder'));
+        console.log("Das ist die ORDER SESSION", orderSession);
+
+        orderIdArea.innerText += " " + orderSession.id;
+        paymentMethodArea.innerText += " " + orderSession['zahlungsart'].bezeichnung;
+        orderDateArea.innerText += " " +  orderSession.bestellzeitpunkt;
+
+        let apiFetch = "http://localhost:8000/api/person/gib/" + orderSession['besteller'].id;
+        const personalData = await fetch(apiFetch);
+        const data = await personalData.json();
+
+        console.log("Persönliche Datan Abgefragt: ", personalData);
+
+        // Hier darunter kommen die persönliche Daten der Bestellbestätigung
+        let surnameArea = document.querySelector('#surname');
+        let lastnameArea = document.querySelector('#lastname');
+        let streetArea = document.querySelector('#street');
+        let houseNoArea = document.querySelector('#houseNo');
+
+        surnameArea.innerText += " " + data.vorname;
+        lastnameArea.innerText += " " + data.nachname;
+        streetArea.innerText += " " + data.adresse.strasse;
+        houseNoArea.innerText += " " + data.adresse.hausnummer;
       });
     </script>
   </body>
