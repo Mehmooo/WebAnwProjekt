@@ -64,7 +64,7 @@ class AdresseDao {
 
   update(id, strasse = "", hausnummer = "", plz = "", ort = "") {
     var sql =
-      "UPDATE Adresse SET strasse=?,hausnummer=?,adresszusatz=?,plz=?,ort=?,landId=? WHERE id=?";
+      "UPDATE Adresse SET strasse=?,hausnummer=?,plz=?,ort=? WHERE id=?";
     var statement = this._conn.prepare(sql);
     var params = [strasse, hausnummer, plz, ort, id];
     var result = statement.run(params);

@@ -6,7 +6,9 @@ const labels = {
   lastname: "Name",
   firstname: "Vorname",
   street: "Straße",
-  city: "Stadt",
+  houseNumber: "Hausnummer",
+  zip: "PLZ",
+  city: "Ort",
   email: "E-Mail",
 };
 
@@ -31,7 +33,7 @@ function getUserInfo() {
 }
 
 async function loadAccountData(endpoint) {
-  var apiFetch = apiMain + endpoint;
+  const apiFetch = apiMain + endpoint;
   console.log("The API Fetch URL: " + apiFetch);
 
   try {
@@ -42,14 +44,18 @@ async function loadAccountData(endpoint) {
       accountData = {
         lastname: data.nachname,
         firstname: data.vorname,
-        street: data.adresse.strasse + " " + data.adresse.hausnummer,
-        city: data.adresse.plz + " " + data.adresse.ort,
+        street: data.adresse.strasse,
+        houseNumber: data.adresse.hausnummer,
+        zip: data.adresse.plz,
+        city: data.adresse.ort,
         email: data.email,
+        addressId: data.adresse.id,
       };
 
       renderView();
 
       console.log("Account erfolgreich geladen");
+      console.log("neu");
     } else {
       console.log("Fehlgeschlagen siehe Status Code " + response.status);
     }
@@ -62,9 +68,32 @@ function renderView() {
   const container = document.querySelector(".personal-data-view");
   container.innerHTML = "";
 
-  Object.keys(accountData).forEach((key) => {
+  const fields = [
+    {
+      label: labels.lastname,
+      value: accountData.lastname,
+    },
+    {
+      label: labels.firstname,
+      value: accountData.firstname,
+    },
+    {
+      label: labels.street,
+      value: `${accountData.street} ${accountData.houseNumber}`,
+    },
+    {
+      label: "Stadt",
+      value: `${accountData.zip} ${accountData.city}`,
+    },
+    {
+      label: labels.email,
+      value: accountData.email,
+    },
+  ];
+
+  fields.forEach((field) => {
     const p = document.createElement("p");
-    p.textContent = labels[key] + ": " + accountData[key];
+    p.textContent = `${field.label}: ${field.value}`;
     container.appendChild(p);
   });
 }
@@ -73,61 +102,98 @@ function renderEdit() {
   const container = document.querySelector(".personal-data-view");
   container.innerHTML = "";
 
-  Object.keys(accountData).forEach((key) => {
+  const rows = [
+    ["lastname"],
+    ["firstname"],
+    ["street", "houseNumber"],
+    ["zip", "city"],
+    ["email"],
+  ];
+
+  rows.forEach((group) => {
     const row = document.createElement("div");
     row.classList.add("field-row");
 
-    const label = document.createElement("label");
-    label.textContent = labels[key];
+    group.forEach((key) => {
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("field");
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = accountData[key];
-    input.dataset.key = key;
+      const label = document.createElement("label");
+      label.textContent = labels[key];
 
-    row.appendChild(label);
-    row.appendChild(input);
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = accountData[key] || "";
+      input.dataset.key = key;
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(input);
+
+      row.appendChild(wrapper);
+    });
 
     container.appendChild(row);
   });
 }
 
 async function saveData() {
-  // Inputs in accountData übernehmen
   document.querySelectorAll(".personal-data-view input").forEach((input) => {
     const key = input.dataset.key;
     accountData[key] = input.value;
   });
 
-  // Mapping zurück ins API-Format
-  const payload = {
-    id: getUserInfo().userId, // wichtig: muss vorhanden sein
+  const payloadadresse = {
+      id: accountData.addressId,
+      strasse: accountData.street,
+      hausnummer: accountData.houseNumber,
+      plz: accountData.zip,
+      ort: accountData.city,
+    };
+
+    console.log(payloadadresse);
+
+  const payloadperson = {
+    id: getUserInfo().userId,
     vorname: accountData.firstname,
     nachname: accountData.lastname,
     email: accountData.email,
     adresse: {
-      id: accountData.addressId, // musst du ggf. beim Laden speichern!
+      id: accountData.addressId,
     },
   };
 
-  try {
-    const res = await fetch(apiMain + "/person", {
+  console.log(payloadperson);
+
+    try {
+    const resAdresse = await fetch(apiMain + "/adresse", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payloadadresse),
     });
 
-    const data = await res.json();
-
-    if (res.ok) {
-      console.log("Gespeichert ✔", data);
-    } else {
-      console.log("Fehler beim Speichern:", data);
+    if (!resAdresse.ok) {
+      throw new Error("Adresse konnte nicht gespeichert werden.");
     }
-  } catch (err) {
-    console.error("Network Fehler:", err);
+
+    const resPerson = await fetch(apiMain + "/person", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payloadperson),
+    });
+
+    if (!resPerson.ok) {
+      throw new Error("Person konnte nicht gespeichert werden.");
+    }
+
+      console.log("Gespeichert ✔");
+      renderView();
+
+    } catch (err) {
+    console.error(err);
   }
 }
 
@@ -138,9 +204,7 @@ function toggleEdit() {
     renderEdit();
     button.textContent = "Speichern";
   } else {
-    // hier kommt der endpoint rein
     saveData();
-    renderView();
     button.textContent = "Persönliche Daten ändern";
   }
 
