@@ -108,8 +108,7 @@ INSERT INTO Adresse (id, strasse, hausnummer, plz, ort) VALUES (1, 'Runkellenstr
 
 INSERT INTO Person (id, anrede, vorname, nachname, adresseId, telefonnummer, email, geburtstag) VALUES (1, 0, 'Mehmet', 'Akin', 1, '+491627948080', 'akinmehm@hs-albsig.de', NULL);
 
-INSERT INTO Benutzer (id, benutzername, passwort, benutzerrolleId, personId) VALUES (1, 'admin1', '$2y$10$xfJpHHX1d7AyujoL.VN.nO.0uyHmn3grmYyIWQVg4Nf5.8yLfccuG', 1, 1);
-
+INSERT INTO Benutzer (id, benutzername, passwort, benutzerrolleId, personId) VALUES (1, 'admin1', '$2a$10$ejF95Hd0rdQEpRU9ihI.JOYIwOYceFwikkrOlUZxYXSqsGPZS6rV6', 1, 1);
 
 INSERT INTO Zahlungsart (id, bezeichnung) VALUES (1, 'Kredit- /Debitkartenzahlung');
 INSERT INTO Zahlungsart (id, bezeichnung) VALUES (2, 'Apple Pay');
