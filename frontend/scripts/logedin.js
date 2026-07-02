@@ -19,6 +19,5 @@ function isTokenExpired(token) {
 
 // Was macht das hier genau, ich habe keine HTML Datei gefunden, auf welches document sich das hier bezieht???
 
-//document.addEventListener("DOMContentLoaded", () => {
-//  checkAuth();
-//});
+checkAuth();
+
