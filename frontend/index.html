@@ -20,12 +20,18 @@
     <header class="header">
       <div class="Logo">
         <a href="/index.html">
-          <img src="http://localhost:8000/images/4Dudes-Photoroom.png" alt="Logo" />
+          <img
+            src="http://localhost:8000/images/4Dudes-Photoroom.png"
+            alt="Logo"
+          />
           <h1>4Dudes</h1>
         </a>
       </div>
 
       <div class="nav">
+        <a href="/views/products_overview.html">
+          <input type="button" value="SHOP" class="but" />
+        </a>
         <a id="loginNav" href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
@@ -89,7 +95,11 @@
 
     <footer class="footer">
       <div class="items3">
-        <img class="left" src="http://localhost:8000/images/4Dudes-Photoroom.png" alt="Logo" />
+        <img
+          class="left"
+          src="http://localhost:8000/images/4Dudes-Photoroom.png"
+          alt="Logo"
+        />
       </div>
 
       <div class="items3">
@@ -133,26 +143,27 @@
         }
       }
 
-
       //If user click on the "Account" button
-      document.getElementById('accountNav').addEventListener('click', (event) => {
-        event.preventDefault(); //Block the Navigation
-        if (!checkAuth()) {
-          alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
-          return;
-        }
-        window.location.href = "/views/account.html";
-      })
+      document
+        .getElementById("accountNav")
+        .addEventListener("click", (event) => {
+          event.preventDefault(); //Block the Navigation
+          if (!checkAuth()) {
+            alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
+            return;
+          }
+          window.location.href = "/views/account.html";
+        });
 
       //If user click on the "Einkaufswagen" button
-      document.getElementById('cartNav').addEventListener('click', (event) => {
+      document.getElementById("cartNav").addEventListener("click", (event) => {
         event.preventDefault(); //Block the Navigation
         if (!checkAuth()) {
           alert("Keiner ist momentan angemeldet, melden Sie sich bitte an!");
           return;
         }
         window.location.href = "/views/cart.html";
-      })
+      });
     </script>
   </body>
 </html>

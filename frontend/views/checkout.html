@@ -6,7 +6,11 @@
     <title>Checkout</title>
     <link rel="stylesheet" href="/style/style.css" />
     <link rel="stylesheet" href="/style/headerfooter.css" />
-    <link rel="shortcut icon" href="http://localhost:8000/images/4Dudes-Photoroom.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="http://localhost:8000/images/4Dudes-Photoroom.png"
+      type="image/x-icon"
+    />
     <script src="/scripts/fetchRequests.js"></script>
     <script src="/scripts/jwt.js"></script>
   </head>
@@ -15,12 +19,18 @@
     <header class="header">
       <div class="Logo">
         <a href="/index.html">
-          <img src="http://localhost:8000/images/4Dudes-Photoroom.png" alt="Logo" />
+          <img
+            src="http://localhost:8000/images/4Dudes-Photoroom.png"
+            alt="Logo"
+          />
           <h1>4Dudes</h1>
         </a>
       </div>
 
       <div class="nav">
+        <a href="/views/products_overview.html">
+          <input type="button" value="SHOP" class="but" />
+        </a>
         <a href="/auth/login.html">
           <input type="button" value="Login" class="but" />
         </a>
@@ -36,15 +46,14 @@
     <main>
       <div class="page-container main-box">
         <h2 class="checkout-title">Checkout</h2>
-        
+
         <div class="checkout-layout">
           <div class="checkout-section">
             <h3>Lieferadresse</h3>
             <div id="delivery-address">
               <p>Lieferadresse wird geladen...</p>
             </div>
-        </div>
-         
+          </div>
 
           <div class="checkout-section">
             <h3>Zahlungsmethode</h3>
@@ -52,8 +61,7 @@
               <!--
               <option>PayPal</option>
               <option>Kreditkarte</option>
-            -->
-            </select>
+            --></select>
           </div>
 
           <div class="checkout-section" id="productSummary">
@@ -67,16 +75,12 @@
               <div>Summe</div>
             </div>
 
-            
-            
             <div class="checkout-summary">
-              <p id="subtotal">Zwischensumme: </p>
-              <p id="tax">enth. MwSt.: </p>
-              <p class="cart-total" id="total">Gesamtpreis: </p>
+              <p id="subtotal">Zwischensumme:</p>
+              <p id="tax">enth. MwSt.:</p>
+              <p class="cart-total" id="total">Gesamtpreis:</p>
             </div>
-          
           </div>
-        
 
           <div class="checkout-agb">
             <label>
@@ -96,7 +100,11 @@
 
     <footer class="footer">
       <div class="items3">
-        <img class="left" src="http://localhost:8000/images/4Dudes-Photoroom.png" alt="Logo" />
+        <img
+          class="left"
+          src="http://localhost:8000/images/4Dudes-Photoroom.png"
+          alt="Logo"
+        />
       </div>
 
       <div class="items3">
@@ -123,7 +131,8 @@
         name.textContent = person.vorname + " " + person.nachname;
 
         const street = document.createElement("p");
-        street.textContent = person.adresse.strasse + " " + person.adresse.hausnummer;
+        street.textContent =
+          person.adresse.strasse + " " + person.adresse.hausnummer;
 
         const city = document.createElement("p");
         city.textContent = person.adresse.plz + " " + person.adresse.ort;
@@ -136,7 +145,7 @@
         container.appendChild(city);
         container.appendChild(email);
       }
-      document.addEventListener('DOMContentLoaded', async () => {
+      document.addEventListener("DOMContentLoaded", async () => {
         const checkoutUserInfo = getUserInfo();
 
         if (!checkoutUserInfo) {
@@ -145,7 +154,9 @@
           return;
         }
 
-        const personData = await loadCheckoutUserData("/person/gib/" + checkoutUserInfo.userId);
+        const personData = await loadCheckoutUserData(
+          "/person/gib/" + checkoutUserInfo.userId,
+        );
 
         if (!personData || !personData.adresse) {
           document.querySelector("#delivery-address").innerHTML =
@@ -156,11 +167,11 @@
         checkoutPerson = personData;
         renderDeliveryAddress(checkoutPerson);
 
-        const callApi = await loadAllPaymentMethods('/loadAllPaymentMethods');
+        const callApi = await loadAllPaymentMethods("/loadAllPaymentMethods");
         console.log("Was jetzt in Checkout.html vorhanden ist: ", callApi);
-        var parent = document.querySelector('.input-field');
-        for (let i = 0; i<callApi.length; i++) {
-          let optionTag = document.createElement('option');
+        var parent = document.querySelector(".input-field");
+        for (let i = 0; i < callApi.length; i++) {
+          let optionTag = document.createElement("option");
           //optionTag.classList.add(`${callApi[i].bezeichnung}`);
           optionTag.innerText = callApi[i].bezeichnung;
           parent.appendChild(optionTag);
@@ -168,38 +179,45 @@
         }
 
         console.log("Fertig mit dem Laden von Zahlungsarten");
-        var finalTotSum = 0.00;
-        var grandparent = document.querySelector('#productSummary');
-        var parseSession = JSON.parse(sessionStorage.getItem('cart'));
-        for (let i = 0; i<parseSession.length; i++) {
-          let parent = document.createElement('div');
-          parent.classList.add('checkout-article');
-          parent.classList.add('checkout-row');
+        var finalTotSum = 0.0;
+        var grandparent = document.querySelector("#productSummary");
+        var parseSession = JSON.parse(sessionStorage.getItem("cart"));
+        for (let i = 0; i < parseSession.length; i++) {
+          let parent = document.createElement("div");
+          parent.classList.add("checkout-article");
+          parent.classList.add("checkout-row");
           grandparent.appendChild(parent);
 
-          let child1 = document.createElement('div');
-          let child2 = document.createElement('div');
-          let child3 = document.createElement('div');
-          let child4 = document.createElement('div');
-          let child5 = document.createElement('div');
+          let child1 = document.createElement("div");
+          let child2 = document.createElement("div");
+          let child3 = document.createElement("div");
+          let child4 = document.createElement("div");
+          let child5 = document.createElement("div");
 
           child1.innerText = parseSession[i].title;
           child2.innerText = parseSession[i].variant;
           child3.innerText = parseSession[i].amount;
-          child4.innerText = (parseSession[i].unitPrice).replace('.', ',');
-          
+          child4.innerText = parseSession[i].unitPrice.replace(".", ",");
 
-          let intUnitPrice = parseFloat((parseSession[i].unitPrice).slice(0,parseSession[i].unitPrice.length-1));
+          let intUnitPrice = parseFloat(
+            parseSession[i].unitPrice.slice(
+              0,
+              parseSession[i].unitPrice.length - 1,
+            ),
+          );
           console.log("Der intUnitPrice: ", intUnitPrice);
           let intAmount = parseFloat(parseSession[i].amount);
           console.log("Der intAmount: ", intAmount);
 
-          let sumTotal = intUnitPrice*intAmount;
-          
+          let sumTotal = intUnitPrice * intAmount;
+
           console.log("In der for loop die sumTotal entwicklung: ", sumTotal);
           finalTotSum += sumTotal;
-          console.log("In der for loop die finalTotSum entwicklung: ", finalTotSum);
-          let stringSumTotal = (sumTotal.toFixed(2)).replace('.', ',') + '€';
+          console.log(
+            "In der for loop die finalTotSum entwicklung: ",
+            finalTotSum,
+          );
+          let stringSumTotal = sumTotal.toFixed(2).replace(".", ",") + "€";
 
           child5.innerText = stringSumTotal;
 
@@ -209,31 +227,28 @@
           parent.appendChild(child4);
           parent.appendChild(child5);
 
-          const parent3 = document.querySelector('#productSummary');
-          const summary = document.querySelector('.checkout-summary');
+          const parent3 = document.querySelector("#productSummary");
+          const summary = document.querySelector(".checkout-summary");
 
           parent3.insertBefore(parent, summary);
-
-
         }
 
-        let stringFinalTotSum = (finalTotSum.toFixed(2)) + '€';
-        let tax = finalTotSum*0.19;
-        let stringTax = (tax.toFixed(2)).replace('.', ',') + '€';
-        let subtotal = finalTotSum*0.81;
-        let stringSubtotal = (subtotal.toFixed(2)).replace('.', ',') + '€';
-        
-        
+        let stringFinalTotSum = finalTotSum.toFixed(2) + "€";
+        let tax = finalTotSum * 0.19;
+        let stringTax = tax.toFixed(2).replace(".", ",") + "€";
+        let subtotal = finalTotSum * 0.81;
+        let stringSubtotal = subtotal.toFixed(2).replace(".", ",") + "€";
+
         //let stringTax = (tax.toString() + '€').replace('.', ',');
         //let stringSubtotal = (subtotal.toString() + '€').replace('.', ',');
 
-        let subtotalArea = document.querySelector('#subtotal');
-        let taxArea = document.querySelector('#tax');
-        let totalSumArea = document.querySelector('#total');
+        let subtotalArea = document.querySelector("#subtotal");
+        let taxArea = document.querySelector("#tax");
+        let totalSumArea = document.querySelector("#total");
 
-        let strongSubtotal = document.createElement('strong');
-        let strongTax = document.createElement('strong');
-        let strongTotal = document.createElement('strong');
+        let strongSubtotal = document.createElement("strong");
+        let strongTax = document.createElement("strong");
+        let strongTotal = document.createElement("strong");
 
         strongSubtotal.innerText = stringSubtotal;
         strongTax.innerText = stringTax;
@@ -243,24 +258,20 @@
         taxArea.appendChild(strongTax);
         totalSumArea.appendChild(strongTotal);
 
-    
         console.log("AM ENDE VON CHECKOUT:HTML");
-
-        
-
-
-
       });
 
-      var closeOrderButton = document.querySelector('.checkout-button');
-      closeOrderButton.addEventListener('click', async () => {
-        let parseSession = JSON.parse(sessionStorage.getItem('cart'));
-        console.log("Hier kommt die Antwort darunter ob geparsed wurde oder nicht");
+      var closeOrderButton = document.querySelector(".checkout-button");
+      closeOrderButton.addEventListener("click", async () => {
+        let parseSession = JSON.parse(sessionStorage.getItem("cart"));
+        console.log(
+          "Hier kommt die Antwort darunter ob geparsed wurde oder nicht",
+        );
         console.log(Array.isArray(parseSession));
         console.log("typeof parseSession: ", typeof parseSession);
         console.log("Der Inhalt von parseSession: ", parseSession);
-        let checkedBox = document.getElementById('agb').checked // Boolean Value
-        let selectedPaymentMethod = document.querySelector('.input-field');
+        let checkedBox = document.getElementById("agb").checked; // Boolean Value
+        let selectedPaymentMethod = document.querySelector(".input-field");
 
         if (!checkedBox) {
           alert("Akzeptieren Sie die AGB's");
@@ -272,8 +283,8 @@
           return;
         }
 
-        const option = selectedPaymentMethod.options[selectedPaymentMethod.selectedIndex];
-        
+        const option =
+          selectedPaymentMethod.options[selectedPaymentMethod.selectedIndex];
 
         if (!checkoutPerson) {
           alert("Benutzerdaten konnten nicht geladen werden.");
@@ -281,22 +292,17 @@
         }
 
         var infoAbschluss = await closeOrder(
-          '/newOrder',
+          "/newOrder",
           parseInt(option.className),
           parseSession,
-          checkoutPerson.id
+          checkoutPerson.id,
         );
 
         sessionStorage.setItem("lastOrder", JSON.stringify(infoAbschluss));
 
         window.location.href = "success.html";
         console.log("DER KAUFABSCHLUSS: ", infoAbschluss);
-        
-        
-
-        
-
-      })
+      });
     </script>
   </body>
 </html>
