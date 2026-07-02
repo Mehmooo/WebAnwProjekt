@@ -121,8 +121,10 @@
       document.addEventListener("DOMContentLoaded", loadHomepage);
 
       async function loadHomepage() {
-        const cart = [];
-        sessionStorage.setItem("cart", JSON.stringify(cart));
+        if (!sessionStorage.getItem("cart")) {
+          const cart = [];
+          sessionStorage.setItem("cart", JSON.stringify(cart));
+        }
         const fullContainer = document.querySelector(".start-cards");
 
         let imagePaths = await loadPicturesHomepage("/loadPictureHomepage");
